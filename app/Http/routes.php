@@ -13,6 +13,4 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::controller('login', 'LoginController');
-Route::get('admin', function(){
-    return 'admin';
-});
+Route::controller('admin', 'AdminController');
