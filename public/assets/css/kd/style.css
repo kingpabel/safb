@@ -1,0 +1,13 @@
+.img{vertical-align: middle;
+max-width: 50%;margin-bottom: 15px;margin-left: 25%}
+.panel-body{padding:0}
+.jumbotron{padding:5px}
+.form-horizontal .form-group{margin-left:10px;margin-right:10px}
+.container .jumbotron, .container-fluid .jumbotron{border-radius:3px 3px 0px 0px;background-color:#FAF7F7}
+.page-header{border-bottom: 1px solid #D8D6D6}
+.panel-default{border-color:#D8D6D6}
+.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline{margin-bottom:15px}
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]{margin-left:-13px}
+.btn-link:focus, .btn-link:hover{text-decoration:none}
+.btn-default{color:#fff;background-color:#4699EA}
+.btn-default:hover{color:#fff;background-color:#3A7BBB}
