@@ -3,15 +3,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>SAARC Agri Food Bank</title>
-    {!! HTML::script('assets/js/jquery.js') !!}
     <!--// Stylesheets //-->
-    @yield('extraCss')
+
+    {!! HTML::script('assets/js/jquery.js') !!}
     {!! HTML::style('assets/css/style.css') !!}
     {!! HTML::style('assets/css/bootstrap.css') !!}
     {!! HTML::style('assets/fa/css/font-awesome.css') !!}
     {!! HTML::style('assets/fa/css/font-awesome.min.css') !!}
+    {!! HTML::style('assets/css/jquery-ui.css') !!}
+    {!! HTML::style('assets/css/pnotify/jquery.pnotify.default.css') !!}
+
+    @yield('extraCss')
     <!--// Javascript //-->
-    @yield('extraJs')
+    {!! HTML::script('assets/js/jquery-ui.js') !!}
     {!! HTML::script('assets/js/bootstrap.min.js') !!}
     {!! HTML::script('assets/js/jquery.accordion.js') !!}
     {!! HTML::script('assets/js/jquery.custom-scrollbar.min.js') !!}
@@ -20,7 +24,31 @@
     {!! HTML::script('assets/js/functions.js') !!}
     {!! HTML::script('assets/js/html5shiv.js') !!}
     {!! HTML::script('assets/js/respond.min.js') !!}
+    {!! HTML::script('assets/js/pnotify/jquery.pnotify.js') !!}
 
+    @yield('extraJs')
+    <script type="text/javascript">
+        $(function() {
+            $( "#from" ).datepicker({
+                dateFormat:'yy-mm-dd',
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+            $( "#to" ).datepicker({
+                dateFormat:'yy-mm-dd',
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+        });
+    </script>
     <!--[if lt IE 9]>
     <!--<script type="text/javascript" src="assets/js/html5shiv.js"></script>
     <script type="text/javascript" src="assets/js/respond.min.js"></script>-->
