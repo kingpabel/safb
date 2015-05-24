@@ -15,7 +15,6 @@
     {!! HTML::script('assets/js/bootstrap.min.js') !!}
     {!! HTML::script('assets/js/jquery.accordion.js') !!}
     {!! HTML::script('assets/js/jquery.custom-scrollbar.min.js') !!}
-    {!! HTML::script('assets/js/jquery.custom-scrollbar.min.js') !!}
     {!! HTML::script('assets/js/icheck.min.js') !!}
     {!! HTML::script('assets/js/selectnav.min.js') !!}
     {!! HTML::script('assets/js/functions.js') !!}

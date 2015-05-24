@@ -10,6 +10,8 @@ namespace app\Http\Controllers;
 
 use Auth;
 use Session;
+use App\DataType;
+use App\Food;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 class AdminController extends  Controller{
@@ -27,6 +29,8 @@ class AdminController extends  Controller{
 
     public function getProductionRequirement()
     {
-        return view('admin.productionRequirement');
+        $data['dataType'] = DataType::all();
+        $data['foodList'] = Food::all();
+        return view('admin.productionRequirement',$data);
     }
 }
