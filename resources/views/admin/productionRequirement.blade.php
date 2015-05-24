@@ -17,7 +17,7 @@
                         <tr>
                             <th class="col-md-4">Data Type</th>
                             <td class="col-md-8">
-                                <select class="form-control2" name="data_type_id">
+                                <select class="form-control2" name="data_type_id" required="">
                                     <option value="">Select Data Type...</option>
                                     @foreach($dataType as $data)
                                     <option value="{!! $data->id !!}">{!! $data->name !!}</option>
@@ -29,20 +29,20 @@
                         <tbody>
                         <tr>
                             <th class="col-md-4">Start Date</th>
-                            <td class="col-md-8"><input type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from">
+                            <td class="col-md-8"><input required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from">
                                &nbsp; <label class="redtext">*</label>
                             </td>
                         </tr>
                         <tr>
                             <th class="col-md-4">End Date</th>
-                            <td class="col-md-8"><input type="text" placeholder="End Date" name="end_date" class="form-control3" id="to">
+                            <td class="col-md-8"><input required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to">
                                 &nbsp; <label class="redtext">*</label>
                             </td>
                         </tr>
                         <tr>
                             <th class="col-md-4">Food or Grain</th>
                             <td class="col-md-8">
-                                <select class="form-control2" name="food_id">
+                                <select class="form-control2" name="food_id" required="">
                                     @foreach($foodList as $food)
                                     <option value="{!! $food->id !!}">{!! $food->name !!}</option>
                                     @endforeach
@@ -53,7 +53,7 @@
                         <tr>
                             <th class="col-md-4">Quantity</th>
                             <td class="col-md-8"><input type="text" placeholder="Quantity" name="quantity" class="form-control3">
-                                <select class="form-control4" name="unit_id">
+                                <select class="form-control4" name="unit_id" required="">
                                     @foreach($unitList as $unit)
                                     <option value="{!! $unit->id !!}">{!! $unit->name !!}</option>
                                     @endforeach
@@ -64,7 +64,7 @@
                         <tr>
                             <th class="col-md-4">Storage Location</th>
                             <td class="col-md-8">
-                                <select class="form-control2" name="location_id">
+                                <select class="form-control2" name="location_id" required="">
                                     @foreach($locationList as $location)
                                     <option value="{!! $location->id !!}">{!! $location->name !!}</option>
                                     @endforeach
@@ -75,9 +75,14 @@
 
                         </tbody></table>
 
-                    <br><br><div style="text-align: right; padding-right: 20px;">
+                    <br><br>
+                    <div  id="loader" class="col-md-1 pull-left" style="margin: 0px">
+
+                    </div>
+                    <div style="text-align: right; padding-right: 20px;" class="col-md-11 ">
                         <button type="submit" class="btn btn-success style2">Submit</button>
-                    </div><div class="clearfix"></div><table>
+                    </div>
+                    <div class="clearfix"></div><table>
 
                     </table></div>
                 {!! Form::close() !!}
@@ -95,13 +100,18 @@
                     type: "POST",
                     data: values,
                     cache: false,
+                    beforeSend: function(){
+                        $('#loader').html('<img src="{{ URL::to('assets/images/loader_gif.gif') }}" style="height: 100px;">');
+                    },
                     success: function(data) {
-//                        $('#loader').hide();
-//                        $.pnotify.defaults.styling = "bootstrap3";
+                        $('#loader').hide();
                         if(data=='true') {
+                            $("#productionRequirement")[0].reset();
                             new PNotify({
-                                title: 'Regular Notice',
-                                text: 'Check me out! I\'m a notice.'
+                                title: 'Success',
+                                text: 'Data Saved Successfully',
+                                type: 'success',
+                                delay: 3000
                             });
                         }else{
                             new PNotify({

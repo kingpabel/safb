@@ -195,7 +195,7 @@ aside.sidebarhidden header .togglemenu{
 	width:100%;
 	position:relative;
 	text-transform:uppercase;
-	background:url(../images/sep.gif) repeat-x bottom transparent;
+	/*background:url(../images/sep.gif) repeat-x bottom transparent;*/
 }
 aside.sidebarhidden .navi-acc a {
 	padding-left:0;
