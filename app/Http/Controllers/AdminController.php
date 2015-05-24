@@ -12,6 +12,7 @@ use Auth;
 use Session;
 use App\DataType;
 use App\Food;
+use App\Unit;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 class AdminController extends  Controller{
@@ -31,6 +32,7 @@ class AdminController extends  Controller{
     {
         $data['dataType'] = DataType::all();
         $data['foodList'] = Food::all();
+        $data['unitList'] = Unit::all();
         return view('admin.productionRequirement',$data);
     }
 }

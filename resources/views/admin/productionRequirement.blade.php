@@ -18,7 +18,7 @@
                                 <select class="form-control2">
                                     <option>Select Data Type...</option>
                                     @foreach($dataType as $data)
-                                    <option value="{!! $data->id !!}">{!! $data->type !!}</option>
+                                    <option value="{!! $data->id !!}">{!! $data->name !!}</option>
                                     @endforeach
                                 </select>&nbsp; <label class="redtext">*</label>
                             </td>
@@ -40,7 +40,9 @@
                             <th class="col-md-4">Quantity</th>
                             <td class="col-md-8"><input type="text" placeholder="Input Value" class="form-control3">
                                 <select class="form-control4">
-                                    <option>MT</option>
+                                    @foreach($unitList as $unit)
+                                    <option value="{!! $unit->id !!}">{!! $unit->name !!}</option>
+                                    @endforeach
                                 </select>&nbsp; <label class="redtext">*</label>
                             </td>
                         </tr>
