@@ -39,7 +39,7 @@
                 <header>
                     <!-- Logo Start -->
                     <div class="logo">
-                        <a href="index.html"><img src="assets/images/safb.png" alt="SAARC Agri Food Bank" /></a>
+                        <a href="index.html">{!! HTML::image('assets/images/safb.png') !!}</a>
                     </div>
                     <!-- Logo End -->
                     <!-- Toggle Button Start -->
@@ -59,7 +59,7 @@
                         <li>
                             <a href="#add-data" class="add-data"><i class="fa fa-pencil-square-o fa-2x"></i>&nbsp; Add Data</a>
                             <ul>
-                                <li><a href="production-requirement.html"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
+                                <li><a href="{!! URL::to('admin/production-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
                                 <li><a href="import.html"><i class="fa fa-forward"></i>&nbsp; Import</a></li>
                                 <li><a href="export.html"><i class="fa fa-backward"></i>&nbsp; Export</a></li>
                                 <li><a href="damage.html"><i class="fa fa-bar-chart"></i>&nbsp; Report a Damage</a></li>
@@ -122,7 +122,9 @@
                 <!-- User Section Start -->
                 <div class="user">
                     <figure>
-                        <a href="#"><img src="assets/images/avatarX.png" alt="Admin" /></a>
+                        <a href="#">
+                            {!! HTML::image('assets/images/avatarX.png') !!}
+                        </a>
                     </figure>
                     <div class="welcome">
                         <p>Welcome</p>

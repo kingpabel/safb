@@ -24,4 +24,9 @@ class AdminController extends  Controller{
         Auth::logout();
         return redirect('/');
     }
+
+    public function getProductionRequirement()
+    {
+        return view('admin.productionRequirement');
+    }
 }
