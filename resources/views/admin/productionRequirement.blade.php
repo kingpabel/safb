@@ -105,8 +105,10 @@
                             });
                         }else{
                             new PNotify({
-                                title: 'info',
-                                text: data
+                                title: 'ERROR',
+                                text: data,
+                                type: 'error',
+                                delay: 3000
                             });
                         }
                     }
