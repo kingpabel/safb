@@ -13,6 +13,7 @@ use Session;
 use App\DataType;
 use App\Food;
 use App\Unit;
+use App\Location;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 class AdminController extends  Controller{
@@ -33,6 +34,7 @@ class AdminController extends  Controller{
         $data['dataType'] = DataType::all();
         $data['foodList'] = Food::all();
         $data['unitList'] = Unit::all();
+        $data['locationList'] = Location::all();
         return view('admin.productionRequirement',$data);
     }
 }

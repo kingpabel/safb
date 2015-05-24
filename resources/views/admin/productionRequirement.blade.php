@@ -26,6 +26,18 @@
                         </thead>
                         <tbody>
                         <tr>
+                            <th class="col-md-4">Start Date</th>
+                            <td class="col-md-8"><input type="text" placeholder="Input Value" class="form-control3">
+                               &nbsp; <label class="redtext">*</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="col-md-4">End Date</th>
+                            <td class="col-md-8"><input type="text" placeholder="Input Value" class="form-control3">
+                                &nbsp; <label class="redtext">*</label>
+                            </td>
+                        </tr>
+                        <tr>
                             <th class="col-md-4">Food or Grain</th>
                             <td class="col-md-8">
                                 <select class="form-control2">
@@ -51,37 +63,15 @@
                             <th class="col-md-4">Storage Location</th>
                             <td class="col-md-8">
                                 <select class="form-control2">
-                                    <option>Location 1</option>
-                                    <option>Location 2</option>
-                                    <option>Location 3</option>
-                                    <option>Location 4</option>
-                                    <option>Location 5</option>
-                                    <option>Location 6</option>
+                                    @foreach($locationList as $location)
+                                    <option value="{!! $location->id !!}">{!! $location->name !!}</option>
+                                    @endforeach
                                 </select>
 
                             </td>
                         </tr>
 
                         </tbody></table><br><br><div style="text-align: right; padding-right: 20px;"><button type="button" class="btn btn-success style2">Submit</button></div><div class="clearfix"></div><table>
-
-
-
-
-
-
-
-                        <!-- Row End -->
-
-
-                        <!-- Content Section End -->
-
-                        <!-- Right Section End -->
-
-
-                        <!-- Wrapper End -->
-
-
-
 
                     </table></div></div></div></div></div>
 
