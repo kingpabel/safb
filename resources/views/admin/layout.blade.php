@@ -47,6 +47,14 @@
                     $( "#from" ).datepicker( "option", "maxDate", selectedDate );
                 }
             });
+            $(".input").bind("keyup blur",function() {
+                var $th = $(this);
+                $th.val( $th.val().replace(/[^A-z0-9,#. _@-]/g, function(str) { return ''; } ) );
+            });
+            $(".number").bind("keyup blur",function() {
+                var $th = $(this);
+                $th.val( $th.val().replace(/[^0-9-.]/g, function(str) { return ''; } ) );
+            });
         });
     </script>
     <!--[if lt IE 9]>

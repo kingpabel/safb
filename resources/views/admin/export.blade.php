@@ -30,7 +30,7 @@
                                 <td class="col-md-8">
                                     <select class="form-control2" required="" name="food_id">
                                         @foreach($foodList as $food)
-                                        <option value="{!! $food->id !!}">{!! $food->name !!}</option>
+                                            <option value="{!! $food->id !!}">{!! $food->name !!}</option>
                                         @endforeach
                                     </select>
 
@@ -53,9 +53,9 @@
                                 <td class="col-md-8">
 
                                     <select class="form-control2" required="" name="country_id">
-                                    @foreach($countryList as $country)
-                                        <option value="{!! $country->id !!}">{!! $country->name !!}</option>
-                                    @endforeach
+                                        @foreach($countryList as $country)
+                                            <option value="{!! $country->id !!}">{!! $country->name !!}</option>
+                                        @endforeach
                                     </select>
 
 
@@ -66,7 +66,7 @@
                                 <td class="col-md-8"><input type="text" placeholder="Quantity" required="" class="form-control3 number" name="quantity">
                                     <select class="form-control4" required="" name="unit_id">
                                         @foreach($unitList as $unit)
-                                        <option value="{!! $unit->id !!}">{!! $unit->name !!}</option>
+                                            <option value="{!! $unit->id !!}">{!! $unit->name !!}</option>
                                         @endforeach
                                     </select>&nbsp; <label class="redtext">*</label>
                                 </td>
@@ -83,7 +83,7 @@
                                 <td class="col-md-8">
                                     <select class="form-control2" required="" name="location_id">
                                         @foreach($locationList as $local)
-                                        <option value="{!! $local->id !!}">{!! $local->name !!}</option>
+                                            <option value="{!! $local->id !!}">{!! $local->name !!}</option>
                                         @endforeach
                                     </select>
 
