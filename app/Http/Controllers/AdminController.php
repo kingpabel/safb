@@ -14,6 +14,7 @@ use App\DataType;
 use App\Food;
 use App\Unit;
 use App\Location;
+use App\ImportExport;
 use App\ProductionRequirement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -75,5 +76,13 @@ class AdminController extends  Controller{
             $productionRequirement->save();
             return 'true';
         endif;
+    }
+
+    public function getImport()
+    {
+        $data['foodList'] = Food::all();
+        $data['unitList'] = Unit::all();
+        $data['locationList'] = Location::all();
+        return view('admin.import',$data);
     }
 }
