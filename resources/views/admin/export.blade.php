@@ -5,11 +5,11 @@
             <div class="sec-box">
                 <a class="closethis">Close</a>
                 <header>
-                    <h2 class="heading">Import of Food Grains</h2>
+                    <h2 class="heading">Export of Food Grains</h2>
                 </header>
                 <div class="contents">
                     <a class="togglethis">Toggle</a>
-                    {!! Form::open(array('url' => 'admin/import', 'id' => 'import')) !!}
+                    {!! Form::open(array('url' => 'admin/export', 'id' => 'export')) !!}
                     <div class="table-box">
                         <table class="table" style="border: 0 !important;">
                             <thead>
@@ -38,16 +38,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th class="col-md-4">Import from SAARC Country</th>
-                                <td class="col-md-8">
-                                    <span class="btn-default form-control4">
-                                      <input type="checkbox" name="import_saarc" value="1">
-                                    </span>
-
-
-                                </td>
-                            </tr>
                             <tr>
                                 <th class="col-md-4">Country</th>
                                 <td class="col-md-8">
@@ -103,11 +93,11 @@
 @section('extraJs')
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#import").submit(function(event) {
+            $("#export").submit(function(event) {
                 event.preventDefault();
-                var values = $("#import").serialize();
+                var values = $("#export").serialize();
                 $.ajax({
-                    url: "{!! URL::to('admin/import') !!}",
+                    url: "{!! URL::to('admin/export') !!}",
                     type: "POST",
                     data: values,
                     cache: false,
@@ -117,7 +107,7 @@
                     success: function(data) {
                         $('#loader').hide();
                         if(data=='true') {
-                            $("#import")[0].reset();
+                            $("#export")[0].reset();
                             new PNotify({
                                 title: 'Success',
                                 text: 'Data Saved Successfully',

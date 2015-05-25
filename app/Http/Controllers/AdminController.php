@@ -148,6 +148,41 @@ class AdminController extends  Controller{
     }
 
     public function postExport(){
-
+        $rules = array(
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'  => 'required|date_format:Y-m-d',
+            'food_id'  => 'required',
+            'country_id'  => 'required',
+            'quantity'  => 'required|numeric',
+            'price'  => 'required|numeric',
+            'unit_id'  => 'required',
+            'location_id'  => 'required',
+        );
+        $messages = array(
+            'start_date.date_format' => 'Start Date Will be Y-m-d',
+            'end_date.date_format' => 'End Date Will be Y-m-d',
+            'food_id.required' => 'Please Select A Food',
+            'unit_id.required' => 'Please Select a Measure Unit',
+            'location_id.required' => 'Please Select a Location',
+            'country_id.required' => 'Please Select a Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $data = Input::all();
+            $import = new ImportExport();
+            $import->food_id = Input::get('food_id');
+            $import->start_date = Input::get('start_date');
+            $import->end_date = Input::get('end_date');
+            $import->country_id = Input::get('country_id');
+            $import->quantity = trim(Input::get('quantity'));
+            $import->unit_id = Input::get('unit_id');
+            $import->price = trim(Input::get('price'));
+            $import->location_id = Input::get('location_id');
+            $import->status = 0;
+            $import->save();
+            return 'true';
+        endif;
     }
 }

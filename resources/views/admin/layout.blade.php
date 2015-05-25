@@ -96,7 +96,7 @@
                             <ul>
                                 <li><a href="{!! URL::to('admin/production-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
                                 <li><a href="{!! URL::to('admin/import') !!}"><i class="fa fa-forward"></i>&nbsp; Import</a></li>
-                                <li><a href="export.html"><i class="fa fa-backward"></i>&nbsp; Export</a></li>
+                                <li><a href="{!! URL::to('admin/export') !!}"><i class="fa fa-backward"></i>&nbsp; Export</a></li>
                                 <li><a href="damage.html"><i class="fa fa-bar-chart"></i>&nbsp; Report a Damage</a></li>
                             </ul>
                         </li>
