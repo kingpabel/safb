@@ -8,7 +8,9 @@ class ProductionRequirement extends Model {
     public  $timestamp = true;
     protected $fillable = array('*');
 
-
+    /**
+     *
+     */
     public static function boot()
     {
         parent::boot();
@@ -25,4 +27,35 @@ class ProductionRequirement extends Model {
         });
     }/* END Boot */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function DataType()
+    {
+        return $this->belongsTo('App\DataType','data_type_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Food()
+    {
+        return $this->belongsTo('App\Food','food_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Location()
+    {
+        return $this->belongsTo('App\Location','location_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Unit()
+    {
+        return $this->belongsTo('App\Unit','unit_id','id');
+    }
 }

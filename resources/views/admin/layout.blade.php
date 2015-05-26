@@ -109,6 +109,15 @@
                         <li>
                             <a href="#add-data" class="add-data"><i class="fa fa-pencil-square-o fa-2x"></i>&nbsp; Add Data</a>
                             <ul>
+                                <li><a href="{!! URL::to('admin/production-requirement-form') !!}"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
+                                <li><a href="{!! URL::to('admin/import-form') !!}"><i class="fa fa-forward"></i>&nbsp; Import</a></li>
+                                <li><a href="{!! URL::to('admin/export-form') !!}"><i class="fa fa-backward"></i>&nbsp; Export</a></li>
+                                <li><a href="{!! URL::to('admin/damage-form') !!}"><i class="fa fa-bar-chart"></i>&nbsp; Report a Damage</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#add-data" class="add-data"><i class="fa fa-bar-chart fa-2x"></i>&nbsp; Details</a>
+                            <ul>
                                 <li><a href="{!! URL::to('admin/production-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
                                 <li><a href="{!! URL::to('admin/import') !!}"><i class="fa fa-forward"></i>&nbsp; Import</a></li>
                                 <li><a href="{!! URL::to('admin/export') !!}"><i class="fa fa-backward"></i>&nbsp; Export</a></li>

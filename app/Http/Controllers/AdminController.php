@@ -30,13 +30,20 @@ class AdminController extends  Controller{
         return redirect('/');
     }
 
-    public function getProductionRequirement()
+    public function getProductionRequirementForm()
     {
         $data['dataType'] = DataType::all();
         $data['foodList'] = Food::all();
         $data['unitList'] = Unit::all();
         $data['locationList'] = Location::all();
         return view('admin.productionRequirement',$data);
+    }
+
+    public function getProductionRequirement()
+    {
+        $data = array();
+        $data['productionRequirement'] = ProductionRequirement::all();
+        return view('admin.productionRequirementTotal',$data);
     }
 
     /**
@@ -81,7 +88,7 @@ class AdminController extends  Controller{
     /**
      * @return \Illuminate\View\View
      */
-    public function getImport()
+    public function getImportForm()
     {
         $data['foodList'] = Food::all();
         $data['unitList'] = Unit::all();
@@ -135,7 +142,7 @@ class AdminController extends  Controller{
         endif;
     }
 
-    public function getExport()
+    public function getExportForm()
     {
         $data['foodList'] = Food::all();
         $data['unitList'] = Unit::all();
@@ -183,7 +190,7 @@ class AdminController extends  Controller{
         endif;
     }
 
-    public function getDamage()
+    public function getDamageForm()
     {
         $data['foodList'] = Food::all();
         $data['locationList'] = Location::all();
