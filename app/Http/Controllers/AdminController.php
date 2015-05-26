@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 5/24/15
- * Time: 12:45 AM
- */
 
 namespace app\Http\Controllers;
 
@@ -16,6 +10,9 @@ use App\Unit;
 use App\Location;
 use App\Country;
 use App\ImportExport;
+use App\DamageType;
+use App\DamageLevel;
+use App\Damage;
 use App\ProductionRequirement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -183,6 +180,62 @@ class AdminController extends  Controller{
             $import->status = 0;
             $import->save();
             return 'true';
+        endif;
+    }
+
+    public function getDamage()
+    {
+        $data['foodList'] = Food::all();
+        $data['locationList'] = Location::all();
+        $data['damageList'] = DamageType::all();
+        $data['damageLevelList'] = DamageLevel::all();
+        return view('admin.damage', $data);
+    }
+
+    public function postDamage()
+    {
+        $rules = array(
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'  => 'required|date_format:Y-m-d',
+            'food_id'  => 'required',
+            'location_id'  => 'required',
+            'damage_type_id'  => 'required',
+            'damage_level_id'  => 'required',
+            'details'  => 'required',
+        );
+        $messages = array(
+            'start_date.date_format' => 'Start Date Will be Y-m-d',
+            'end_date.date_format' => 'End Date Will be Y-m-d',
+            'food_id.required' => 'Please Select A Food',
+            'location_id.required' => 'Please Select a Location',
+            'damage_type_id.required' => 'Please Select a Damage Type',
+            'damage_level_id.required' => 'Please Select a Damage Level',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            $errorMessage =  $validator->messages()->first();
+        Session::flash('flashError', $errorMessage);
+        return redirect('admin/damage');
+        else:
+            $file = Input::file('file');
+            if($file) {
+                $destinationPath = public_path() . '/damage/';
+                $filename = $file->getClientOriginalName();
+                Input::file('file')->move($destinationPath, $filename);
+            }
+            $damage = new Damage();
+            $damage->start_date = Input::get('start_date');
+            $damage->end_date = Input::get('end_date');
+            $damage->food_id = Input::get('food_id');
+            $damage->location_id = Input::get('location_id');
+            $damage->damage_type_id = Input::get('damage_type_id');
+            $damage->damage_level_id = Input::get('damage_level_id');
+            $damage->details = Input::get('details');
+            if(isset($filename))
+                $damage->file = $filename;
+            $damage->save();
+            Session::flash('flashSuccess', 'Damage Data Save Successfully');
+            return redirect('admin/damage');
         endif;
     }
 }

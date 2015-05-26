@@ -55,6 +55,21 @@
                 var $th = $(this);
                 $th.val( $th.val().replace(/[^0-9-.]/g, function(str) { return ''; } ) );
             });
+            @if(Session::has('flashError'))
+            new PNotify({
+                title: 'ERROR',
+                text: "{!! Session::get('flashError') !!}",
+                type: 'error',
+                delay: 3000
+            });
+            @elseif(Session::has('flashSuccess'))
+            new PNotify({
+                title: 'Success',
+                text: "{!! Session::get('flashSuccess') !!}",
+                type: 'success',
+                delay: 3000
+            });
+            @endif
         });
     </script>
     <!--[if lt IE 9]>
@@ -97,7 +112,7 @@
                                 <li><a href="{!! URL::to('admin/production-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Production And Requirements</a></li>
                                 <li><a href="{!! URL::to('admin/import') !!}"><i class="fa fa-forward"></i>&nbsp; Import</a></li>
                                 <li><a href="{!! URL::to('admin/export') !!}"><i class="fa fa-backward"></i>&nbsp; Export</a></li>
-                                <li><a href="damage.html"><i class="fa fa-bar-chart"></i>&nbsp; Report a Damage</a></li>
+                                <li><a href="{!! URL::to('admin/damage') !!}"><i class="fa fa-bar-chart"></i>&nbsp; Report a Damage</a></li>
                             </ul>
                         </li>
                         <li>
