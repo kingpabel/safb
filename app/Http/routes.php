@@ -13,4 +13,6 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::controller('login', 'LoginController');
+Route::get('admin/production-requirements/{id}', 'AdminController@ProductionRequirementShow');
+//Route::get('admin/production-requirements/{id}', ['uses' => 'AdminController@production-requirement', 'as' => 'id']);
 Route::controller('admin', 'AdminController');

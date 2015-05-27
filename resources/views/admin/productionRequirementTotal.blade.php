@@ -17,6 +17,7 @@
                     <td>Food</td>
                     <td>Quantity</td>
                     <td>Location</td>
+                    <td>Action</td>
 
                 </tr>
                 </thead>
@@ -29,6 +30,7 @@
                     <td>{{ $data->Food->name }}</td>
                     <td>{{ $data->quantity }} {{ $data->Unit->name }}</td>
                     <td>{{ $data->Location->name }}</td>
+                    <td><a href='{!! URL::to("admin/production-requirements/$data->id") !!}' class="btn-primary">Update</a></td>
                 </tr>
                 @endforeach
                 </tbody>

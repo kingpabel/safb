@@ -46,6 +46,12 @@ class AdminController extends  Controller{
         return view('admin.productionRequirementTotal',$data);
     }
 
+    public function ProductionRequirementShow($id)
+    {
+        return ProductionRequirement::find($id);
+
+    }
+
     public function getImport()
     {
         $data = array();
