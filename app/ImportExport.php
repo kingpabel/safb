@@ -23,4 +23,24 @@ class ImportExport extends Model {
             $post->updated_by = Auth::user()->id;
         });
     }/* END Boot */
+
+    public function Food()
+    {
+        return $this->belongsTo('App\Food','food_id','id');
+    }
+
+    public function Country()
+    {
+        return $this->belongsTo('App\Country','country_id','id');
+    }
+
+    public function Location()
+    {
+        return $this->belongsTo('App\Location','location_id','id');
+    }
+
+    public function Unit()
+    {
+        return $this->belongsTo('App\Unit','unit_id','id');
+    }
 }

@@ -25,4 +25,25 @@ class Damage extends Model {
             $post->updated_by = Auth::user()->id;
         });
     }/* END Boot */
+
+    public function Food()
+    {
+        return $this->belongsTo('App\Food','food_id','id');
+    }
+
+    public function Location()
+    {
+        return $this->belongsTo('App\Location','location_id','id');
+    }
+
+    public function DamageType()
+    {
+        return $this->belongsTo('App\DamageType','damage_type_id','id');
+    }
+
+    public function DamageLevel()
+    {
+        return $this->belongsTo('App\DamageLevel','damage_level_id','id');
+    }
+
 }

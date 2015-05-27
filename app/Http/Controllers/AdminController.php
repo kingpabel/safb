@@ -46,6 +46,27 @@ class AdminController extends  Controller{
         return view('admin.productionRequirementTotal',$data);
     }
 
+    public function getImport()
+    {
+        $data = array();
+        $data['importAll'] = ImportExport::where('status',1)->get();
+        return view('admin.importView',$data);
+    }
+
+    public function getExport()
+    {
+        $data = array();
+        $data['importAll'] = ImportExport::where('status',0)->get();
+        return view('admin.exportView',$data);
+    }
+    public function getDamage()
+    {
+        $data = array();
+        $data['damageAll'] = Damage::all();
+        return view('admin.damageView',$data);
+    }
+
+
     /**
      * @return string
      */
