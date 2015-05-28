@@ -113,7 +113,57 @@ class AdminController extends  Controller{
 
     public function getImportEdit($id)
     {
-        return $id;
+        $data['foodList'] = Food::all();
+        $data['unitList'] = Unit::all();
+        $data['locationList'] = Location::all();
+        $data['countryList'] = Country::all();
+        $data['import'] = ImportExport::find($id);
+        return view('admin.importEdit',$data);
+    }
+
+    public function postImportEdit($id)
+    {
+        $rules = array(
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'  => 'required|date_format:Y-m-d',
+            'food_id'  => 'required',
+            'country_id'  => 'required',
+            'quantity'  => 'required|numeric',
+            'price'  => 'required|numeric',
+            'unit_id'  => 'required',
+            'location_id'  => 'required',
+        );
+        $messages = array(
+            'start_date.date_format' => 'Start Date Will be Y-m-d',
+            'end_date.date_format' => 'End Date Will be Y-m-d',
+            'food_id.required' => 'Please Select A Food',
+            'unit_id.required' => 'Please Select a Measure Unit',
+            'location_id.required' => 'Please Select a Location',
+            'country_id.required' => 'Please Select a Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $data = Input::all();
+            $import = ImportExport::find($id);
+            $import->food_id = Input::get('food_id');
+            $import->start_date = Input::get('start_date');
+            $import->end_date = Input::get('end_date');
+            if(isset($data['import_saarc']))
+                $import->import_saarc = Input::get('import_saarc');
+            else
+                $import->import_saarc = 0;
+            $import->country_id = Input::get('country_id');
+            $import->quantity = trim(Input::get('quantity'));
+            $import->unit_id = Input::get('unit_id');
+            $import->price = trim(Input::get('price'));
+            $import->location_id = Input::get('location_id');
+            $import->status = 1;
+            $import->save();
+            Session::flash('flashSuccess', 'Import Data Update Successfully');
+            return 'true';
+        endif;
     }
 
     public function getExport()

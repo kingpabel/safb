@@ -18,6 +18,6 @@ Route::get('admin/production-requirements/{id}/edit', 'AdminController@getProduc
 Route::post('admin/production-requirements/{id}/edit', 'AdminController@postProductionRequirementEdit');
 Route::get('admin/import/{id}', 'AdminController@getImportShow');
 Route::get('admin/import/{id}/edit', 'AdminController@getImportEdit');
-Route::post('admin/import/{id}/edit', 'AdminController@postProductionRequirementEdit');
+Route::post('admin/import/{id}/edit', 'AdminController@postImportEdit');
 //Route::get('admin/production-requirements/{id}', ['uses' => 'AdminController@production-requirement', 'as' => 'id']);
 Route::controller('admin', 'AdminController');
