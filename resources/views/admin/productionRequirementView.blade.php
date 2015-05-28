@@ -6,11 +6,10 @@
                 <a class="closethis">Close</a>
                 <header>
                     <h2 class="heading">Production and Requirement Data</h2>
-                    <a class="btn style2 btn-primary pull-right" style="margin-top: -3%;" href='{!! URL::to("admin/production-requirements/$productRequirementData->id/edit") !!}'>Edit</a>
+                    <a class="btn style2 btn-primary pull-right" style="margin-top: -3%;" href='{!! URL::to("admin/production-requirements/$productRequirementData->id/edit") !!}'>Update</a>
                 </header>
                 <div class="contents">
                     <a class="togglethis">Toggle</a>
-                    {!! Form::open(array('url' => 'admin/production-requirement', 'id' => 'productionRequirement')) !!}
                     <div class="table-box">
 
                         <table class="table" style="border: 0 !important;">
@@ -63,47 +62,8 @@
                         <table>
 
                         </table></div>
-                    {!! Form::close() !!}
                 </div></div></div></div>
 
-@endsection
-@section('extraJs')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#productionRequirement").submit(function(event) {
-                event.preventDefault();
-                var values = $("#productionRequirement").serialize();
-                $.ajax({
-                    url: "{!! URL::to('admin/production-requirement') !!}",
-                    type: "POST",
-                    data: values,
-                    cache: false,
-                    beforeSend: function(){
-                        $('#loader').html('<img src="{{ URL::to('assets/images/loader_gif.gif') }}" style="height: 100px;">');
-                    },
-                    success: function(data) {
-                        $('#loader').hide();
-                        if(data=='true') {
-                            $("#productionRequirement")[0].reset();
-                            new PNotify({
-                                title: 'Success',
-                                text: 'Data Saved Successfully',
-                                type: 'success',
-                                delay: 3000
-                            });
-                        }else{
-                            new PNotify({
-                                title: 'ERROR',
-                                text: data,
-                                type: 'error',
-                                delay: 3000
-                            });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 @endsection
 @section('extraCss')
     <style>

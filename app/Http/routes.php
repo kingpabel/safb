@@ -16,5 +16,8 @@ Route::controller('login', 'LoginController');
 Route::get('admin/production-requirements/{id}', 'AdminController@getProductionRequirementShow');
 Route::get('admin/production-requirements/{id}/edit', 'AdminController@getProductionRequirementEdit');
 Route::post('admin/production-requirements/{id}/edit', 'AdminController@postProductionRequirementEdit');
+Route::get('admin/import/{id}', 'AdminController@getImportShow');
+Route::get('admin/import/{id}/edit', 'AdminController@getImportEdit');
+Route::post('admin/import/{id}/edit', 'AdminController@postProductionRequirementEdit');
 //Route::get('admin/production-requirements/{id}', ['uses' => 'AdminController@production-requirement', 'as' => 'id']);
 Route::controller('admin', 'AdminController');

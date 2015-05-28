@@ -48,10 +48,6 @@ class AdminController extends  Controller{
 
     public function getProductionRequirementShow($id)
     {
-        $data['dataType'] = DataType::all();
-        $data['foodList'] = Food::all();
-        $data['unitList'] = Unit::all();
-        $data['locationList'] = Location::all();
         $data['productRequirementData']  = ProductionRequirement::find($id);
         return view('admin.productionRequirementView', $data);
     }
@@ -104,9 +100,20 @@ class AdminController extends  Controller{
 
     public function getImport()
     {
-        $data = array();
         $data['importAll'] = ImportExport::where('status',1)->get();
+        return view('admin.importList',$data);
+    }
+
+
+    public function getImportShow($id)
+    {
+        $data['import'] = ImportExport::where('status',1)->where('id', $id)->first();
         return view('admin.importView',$data);
+    }
+
+    public function getImportEdit($id)
+    {
+        return $id;
     }
 
     public function getExport()

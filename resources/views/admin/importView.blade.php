@@ -5,84 +5,84 @@
             <div class="sec-box">
                 <a class="closethis">Close</a>
                 <header>
-                    <h2 class="heading">Import List</h2>
+                    <h2 class="heading">Import of Food Grains</h2>
+                    <a class="btn style2 btn-primary pull-right" style="margin-top: -3%;" href='{!! URL::to("admin/import/$import->id/edit") !!}'>Update</a>
                 </header>
-                <div class="contents" >
-                    <table id="example" class="display" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <td>Start Date</td>
-                            <td>End Date</td>
-                            <td>Food</td>
-                            <td>Import Saarc Country</td>
-                            <td>Country</td>
-                            <td>Quantity</td>
-                            <td>Price</td>
-                            <td>Location</td>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($importAll as $import)
+                <div class="contents">
+                    <a class="togglethis">Toggle</a>
+                    <div class="table-box">
+                        <table class="table" style="border: 0 !important;">
+                            <thead>
                             <tr>
-                                <td>{{ $import->start_date }}</td>
-                                <td>{{ $import->end_date }}</td>
-                                <td>{{ $import->Food->name }}</td>
-                                <td>@if($import->import_saarc == 1) Yes @else No @endif</td>
-                                <td>{{ $import->Country->name }}</td>
-                                <td>{{ $import->quantity }} {{ $import->Unit->name }}</td>
-                                <td>{{ $import->price }}</td>
-                                <td>{{ $import->Location->name }}</td>
+                                <th class="col-md-4">Start Date</th>
+                                <td class="col-md-8">{{ $import->start_date }}
+                                </td>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            <tr>
+                                <th class="col-md-4">End Date</th>
+                                <td class="col-md-8">{{ $import->end_date }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Food or Grains</th>
+                                <td class="col-md-8">
+                                {{ $import->Food->name  }}
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th class="col-md-4">Import from SAARC Country</th>
+                                <td class="col-md-8">
+                                    @if($import->import_saarc == 0) <label class="label label-warning">No</label>
+                                        @else($import->import_saarc == 1) <label class="label label-success"> Yes</label>
+                                        @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Country</th>
+                                <td class="col-md-8">
+                                    {{ $import->Country->name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Quantity</th>
+                                <td class="col-md-8">
+                                    {{ $import->quantity }} {{ $import->Unit->name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Price</th>
+                                <td class="col-md-8">{{ $import->price }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-md-4">Storage Location</th>
+                                <td class="col-md-8">
+                                   {{ $import->Location->name }}
+                                </td>
+                            </tr>
+                            </tbody></table><br><br>
+                        <table>
+                        </table></div>
                 </div></div></div></div>
-@endsection
-@section('extraJs')
-    {!! HTML::script('assets/js/jquery.dataTables.js') !!}
-    {!! HTML::script('assets/js/dataTables.tableTools.js') !!}
-    {!! HTML::style('assets/css/jquery.dataTables.css') !!}
-    {!! HTML::style('assets/css/dataTables.tableTools.css') !!}
-    <script type="text/javascript" language="javascript" class="init">
-        $(document).ready( function () {
-            $('#example').dataTable( {
-                "sDom": 'T<"clear">lfrtip',
-                "oTableTools": {
-                    "aButtons": [
-                        {
-                            "sExtends": "print",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                        {
-
-                            "sExtends": "csv",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                        {
-                            "sExtends": "xls",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-
-                        {
-                            "sExtends": "copy",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-
-                        {
-                            "sExtends": "pdf",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                    ]
-                }
-            } );
-        } );
-    </script>
 @endsection
 @section('extraCss')
     <style>
-        #example_wrapper{
-            margin-top: 2%;
+        table, th, th {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+
+        }
+        th{
+            text-align: center;}
+        th {
+            padding: 5px;
+            text-align: center;
         }
     </style>
+
+
+    </head>
 @endsection
