@@ -30,7 +30,10 @@
                     <td>{{ $data->Food->name }}</td>
                     <td>{{ $data->quantity }} {{ $data->Unit->name }}</td>
                     <td>{{ $data->Location->name }}</td>
-                    <td><a href='{!! URL::to("admin/production-requirements/$data->id") !!}' class="btn-primary">Update</a></td>
+                    <td>
+                        <a href='{!! URL::to("admin/production-requirements/$data->id") !!}' class="btn-primary">View</a>
+                        <a href='{!! URL::to("admin/production-requirements/$data->id/edit") !!}' class="btn-primary">Update</a>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
