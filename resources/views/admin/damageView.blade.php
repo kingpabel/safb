@@ -5,79 +5,93 @@
             <div class="sec-box">
                 <a class="closethis">Close</a>
                 <header>
-                    <h2 class="heading">Damage List</h2>
+                    <h2 class="heading">Damage Data</h2>
+                    <a class="btn style2 btn-primary pull-right" style="margin-top: -3%;" href='{!! URL::to("admin/damage/$damage->id/edit") !!}'>Update</a>
                 </header>
-                <div class="contents" >
-                    <table id="example" class="display" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <td>Start Date</td>
-                            <td>End Date</td>
-                            <td>Food</td>
-                            <td>Location</td>
-                            <td>Damage Type</td>
-                            <td>Damage Level</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($damageAll as $damage)
+                <div class="contents">
+                    <a class="togglethis">Toggle</a>
+                    <div class="table-box">
+                        <table class="table" style="border: 0 !important;">
+                            <thead>
                             <tr>
-                                <td>{{ $damage->start_date }}</td>
-                                <td>{{ $damage->end_date }}</td>
-                                <td>{{ $damage->Food->name }}</td>
-                                <td>{{ $damage->Location->name }}</td>
-                                <td>{{ $damage->DamageType->name }}</td>
-                                <td>{{ $damage->DamageLevel->name }}</td>
+                                <th class="col-md-4">Start Date</th>
+                                <td class="col-md-8">{{ $damage->start_date }}
+                                </td>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div></div></div></div>
+                            <tr>
+                                <th class="col-md-4">End Date</th>
+                                <td class="col-md-8">{{ $damage->end_date }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Food or Grains</th>
+                                <td class="col-md-8">
+                                    {{ $damage->Food->name }}
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th class="col-md-4">Storage Location</th>
+                                <td class="col-md-8">
+                                    {{ $damage->Location->name }}
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Damage Type</th>
+                                <td class="col-md-8">
+                                    {{ $damage->DamageType->name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Damage Level</th>
+                                <td class="col-md-8">
+                                    {{ $damage->DamageLevel->name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-4">Report in details
+                                </th><td class="col-md-8">
+                                    {{ $damage->details }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-md-4">Upload File</th>
+                                <td class="col-md-8">
+                                    @if($damage->file)
+                                        <a href="{!! URL::asset('assets/images/file.png') !!}" download="file.png">
+                                    {!! HTML::image('assets/images/file.png', 'alt', array( 'width' => 70, 'height' => 70 )) !!}
+                                    <span>{{ $damage->file }}</span>
+                                    </a>    @endif
+                                </td>
+                            </tr>
+
+                            </tbody></table><br><br>
+                        <div  id="loader" class="col-md-1 pull-left" style="margin: 0px">
+
+                        </div>
+                        <table>
+                        </table></div>
+                    {!! Form::close() !!}</div></div></div></div>
 @endsection
-@section('extraJs')
-    {!! HTML::script('assets/js/jquery.dataTables.js') !!}
-    {!! HTML::script('assets/js/dataTables.tableTools.js') !!}
-    {!! HTML::style('assets/css/jquery.dataTables.css') !!}
-    {!! HTML::style('assets/css/dataTables.tableTools.css') !!}
-    <script type="text/javascript" language="javascript" class="init">
-        $(document).ready( function () {
-            $('#example').dataTable( {
-                "sDom": 'T<"clear">lfrtip',
-                "oTableTools": {
-                    "aButtons": [
-                        {
-                            "sExtends": "print",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                        {
 
-                            "sExtends": "csv",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                        {
-                            "sExtends": "xls",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-
-                        {
-                            "sExtends": "copy",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-
-                        {
-                            "sExtends": "pdf",
-                            "sMessage": "<span>Generated by DataTables</span>"
-                        },
-                    ]
-                }
-            } );
-        } );
-    </script>
-@endsection
 @section('extraCss')
     <style>
-        #example_wrapper{
-            margin-top: 2%;
+        table, th, th {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+
+        }
+        th{
+            text-align: center;}
+        th {
+            padding: 5px;
+            text-align: center;
         }
     </style>
+
+
+    </head>
 @endsection

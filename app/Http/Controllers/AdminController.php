@@ -170,13 +170,68 @@ class AdminController extends  Controller{
     {
         $data = array();
         $data['importAll'] = ImportExport::where('status',0)->get();
-        return view('admin.exportView',$data);
+        return view('admin.exportList',$data);
     }
     public function getDamage()
     {
         $data = array();
         $data['damageAll'] = Damage::all();
-        return view('admin.damageView',$data);
+        return view('admin.damageList',$data);
+    }
+
+    public function getExportShow($id)
+    {
+        $data['export'] = ImportExport::find($id);
+        return view('admin.exportView', $data);
+    }
+
+    public function getExportEdit($id){
+        $data['foodList'] = Food::all();
+        $data['unitList'] = Unit::all();
+        $data['locationList'] = Location::all();
+        $data['countryList'] = Country::all();
+        $data['export'] = ImportExport::find($id);
+        return view('admin.exportEdit',$data);
+    }
+
+    public function postExportEdit($id){
+        $rules = array(
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'  => 'required|date_format:Y-m-d',
+            'food_id'  => 'required',
+            'country_id'  => 'required',
+            'quantity'  => 'required|numeric',
+            'price'  => 'required|numeric',
+            'unit_id'  => 'required',
+            'location_id'  => 'required',
+        );
+        $messages = array(
+            'start_date.date_format' => 'Start Date Will be Y-m-d',
+            'end_date.date_format' => 'End Date Will be Y-m-d',
+            'food_id.required' => 'Please Select A Food',
+            'unit_id.required' => 'Please Select a Measure Unit',
+            'location_id.required' => 'Please Select a Location',
+            'country_id.required' => 'Please Select a Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $data = Input::all();
+            $import = ImportExport::find($id);
+            $import->food_id = Input::get('food_id');
+            $import->start_date = Input::get('start_date');
+            $import->end_date = Input::get('end_date');
+            $import->country_id = Input::get('country_id');
+            $import->quantity = trim(Input::get('quantity'));
+            $import->unit_id = Input::get('unit_id');
+            $import->price = trim(Input::get('price'));
+            $import->location_id = Input::get('location_id');
+            $import->status = 0;
+            $import->save();
+            Session::flash('flashSuccess', 'Export Data Updated Successfully');
+            return 'true';
+        endif;
     }
 
 
@@ -331,6 +386,68 @@ class AdminController extends  Controller{
         $data['damageList'] = DamageType::all();
         $data['damageLevelList'] = DamageLevel::all();
         return view('admin.damage', $data);
+    }
+
+    public function getDamageShow($id)
+    {
+        $data['damage'] = Damage::find($id);
+        return view('admin.damageView', $data);
+    }
+
+    public function getDamageEdit($id)
+    {
+        $data['foodList'] = Food::all();
+        $data['locationList'] = Location::all();
+        $data['damageList'] = DamageType::all();
+        $data['damageLevelList'] = DamageLevel::all();
+        $data['damage'] = Damage::find($id);
+        return view('admin.damageEdit', $data);
+    }
+    public function postDamageEdit($id)
+    {
+        $rules = array(
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'  => 'required|date_format:Y-m-d',
+            'food_id'  => 'required',
+            'location_id'  => 'required',
+            'damage_type_id'  => 'required',
+            'damage_level_id'  => 'required',
+            'details'  => 'required',
+        );
+        $messages = array(
+            'start_date.date_format' => 'Start Date Will be Y-m-d',
+            'end_date.date_format' => 'End Date Will be Y-m-d',
+            'food_id.required' => 'Please Select A Food',
+            'location_id.required' => 'Please Select a Location',
+            'damage_type_id.required' => 'Please Select a Damage Type',
+            'damage_level_id.required' => 'Please Select a Damage Level',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            $errorMessage =  $validator->messages()->first();
+            Session::flash('flashError', $errorMessage);
+            return redirect("admin/damage/$id/edit");
+        else:
+            $file = Input::file('file');
+            if($file) {
+                $destinationPath = public_path() . '/damage/';
+                $filename = $file->getClientOriginalName();
+                Input::file('file')->move($destinationPath, $filename);
+            }
+            $damage = Damage::find($id);
+            $damage->start_date = Input::get('start_date');
+            $damage->end_date = Input::get('end_date');
+            $damage->food_id = Input::get('food_id');
+            $damage->location_id = Input::get('location_id');
+            $damage->damage_type_id = Input::get('damage_type_id');
+            $damage->damage_level_id = Input::get('damage_level_id');
+            $damage->details = Input::get('details');
+            if(isset($filename))
+                $damage->file = $filename;
+            $damage->save();
+            Session::flash('flashSuccess', 'Damage Data Updated Successfully');
+            return redirect("admin/damage");
+        endif;
     }
 
     public function postDamage()
