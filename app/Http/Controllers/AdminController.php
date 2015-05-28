@@ -496,4 +496,19 @@ class AdminController extends  Controller{
             return redirect('admin/damage');
         endif;
     }
+
+    public  function getReportRequirement()
+    {
+        $data['foods'] = Food::all();
+        return view('admin.reportRequirementForm', $data);
+    }
+
+    public function postReportRequirement(){
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        return ProductionRequirement::where('data_type_id',1)
+                                        ->where('start_date','>=',$startDate)
+                                        ->where('end_date','<=',$endDate)
+                                        ->get();
+    }
 }

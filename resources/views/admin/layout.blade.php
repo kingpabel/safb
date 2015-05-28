@@ -127,7 +127,7 @@
                         <li>
                             <a href="#view-reports" class="view-reports"><i class="fa fa-files-o fa-2x"></i>&nbsp; View Reports</a>
                             <ul>
-                                <li><a href="food-requirement.html"><i class="fa fa-forumbee"></i>&nbsp; Annual Requirements</a></li>
+                                <li><a href="{!! URL::to('admin/report-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Annual Requirements</a></li>
                                 <li><a href="production.html"><i class="fa fa-group"></i>&nbsp; Annual Production</a></li>
                                 <li><a href="import-food.html"><i class="fa fa-forward"></i>&nbsp; Import of Food Grains</a></li>
                                 <li><a href="food-requirement.html"><i class="fa fa-bars"></i>&nbsp; Import from SAARC Members</a></li>
