@@ -504,6 +504,12 @@ class AdminController extends  Controller{
         return view('admin.reportRequirementForm', $data);
     }
 
+    public  function getReportProduction()
+    {
+        $data['foods'] = Food::all();
+        return view('admin.reportProductionForm', $data);
+    }
+
     public function postReportRequirement(){
 
         $startDate = Input::get('start_date');
@@ -523,6 +529,29 @@ class AdminController extends  Controller{
         if($data['requirements']->count() == 0) {
             Session::flash('flashError', "There is no report between $startDate to $endDate");
             return redirect('admin/report-requirement');
+        }
+        return view('admin.reportRequirement',$data);
+    }
+
+    public function postReportProduction(){
+
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $query = ProductionRequirement::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
+            ->where('data_type_id',2)
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('food_id'))
+            $query = $query->where('food_id', Input::get('food_id'));
+
+
+        $data['requirements'] = $query->groupBy('food_id')->get();
+        if($data['requirements']->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-production');
         }
         return view('admin.reportRequirement',$data);
     }
