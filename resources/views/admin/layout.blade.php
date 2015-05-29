@@ -140,8 +140,8 @@
                             <a href="#lists" class="view-reports"><i class="fa fa-th-list fa-2x"></i>&nbsp; Lists</a>
                             <ul>
                                 <li><a href="{!! URL::to('admin/add-member') !!}" ><i class="fa fa-list fa-2x"></i>&nbsp; Add Member</a></li>
-                                <li><a href="gb-members.html" class="view-reports"><i class="fa fa-list fa-2x"></i>&nbsp; Governing Board Member List</a></li>
-                                <li><a href="#" class="view-reports"><i class="fa fa-list-ul fa-2x"></i>&nbsp; National Focal Point List</a></li>
+                                <li><a href="{!! URL::to('admin/member-governing') !!}" class="view-reports"><i class="fa fa-list fa-2x"></i>&nbsp; Governing Board Member List</a></li>
+                                <li><a href="{!! URL::to('admin/member-focal') !!}" class="view-reports"><i class="fa fa-list-ul fa-2x"></i>&nbsp; National Focal Point List</a></li>
                             </ul>
                         </li>
 

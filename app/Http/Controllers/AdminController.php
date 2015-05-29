@@ -679,4 +679,50 @@ class AdminController extends  Controller{
             return 'true';
         endif;
     }
+
+    public function getMemberGoverning()
+    {
+        $data['allMember'] = MemberList::where('member_type', 1)->get();
+        return view('admin.governingBodyMember', $data);
+     }
+
+    public function getMemberFocal()
+    {
+        $data['allMember'] = MemberList::where('member_type', 2)->get();
+        return view('admin.focalMember', $data);
+     }
+
+    public function getMemberEdit($id)
+    {
+        $data['member'] = MemberList::find($id);
+        $data['countryList'] = Country::all();
+        return view('admin.memberEdit', $data);
+    }
+
+    public function postMemberEdit($id)
+    {
+        $rules = array(
+            'member_type'=> "required",
+            'name'  => 'required',
+            'country_id'  => 'required',
+            'code'  => 'required',
+        );
+        $messages = array(
+            'member_type.required' => 'Please Select a Member Type',
+            'country_id.required' => 'Please Select A Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $productionRequirement = MemberList::find($id);
+            $productionRequirement->member_type = Input::get('member_type');
+            $productionRequirement->name = Input::get('name');
+            $productionRequirement->country_id = Input::get('country_id');
+            $productionRequirement->code = Input::get('code');
+            $productionRequirement->save();
+            Session::flash('flashSuccess', 'Member Data Added Successfully');
+            return 'true';
+        endif;
+    }
 }
