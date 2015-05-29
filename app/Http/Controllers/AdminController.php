@@ -675,7 +675,7 @@ class AdminController extends  Controller{
             $productionRequirement->country_id = Input::get('country_id');
             $productionRequirement->code = Input::get('code');
             $productionRequirement->save();
-            Session::flash('flashSuccess', 'Member Data Added Successfully');
+            Session::flash('flashSuccess', 'Member Added Successfully');
             return 'true';
         endif;
     }

@@ -16,7 +16,7 @@
                                 <th class="col-md-4">Member Type</th>
                                 <td class="col-md-8">
 
-                                    <select class="form-control2" required="" name="member_type">
+                                    <select id="member_type" class="form-control2" required="" name="member_type">
                                         <option value="">Plese Select a Member Type</option>
                                         <option value="1" @if($member->member_type == 1) selected @endif>Governing Body</option>
                                         <option value="2"  @if($member->member_type == 2) selected @endif>National Focal</option>
@@ -77,12 +77,11 @@
                     success: function(data) {
                         $('#loader').hide();
                         if(data=='true') {
-                            new PNotify({
-                                title: 'Success',
-                                text: 'Data Saved Successfully',
-                                type: 'success',
-                                delay: 3000
-                            });
+                            if($("#member_type").val() == 1 ){
+                                window.location.href = "{!! URL::to('admin/member-governing') !!}";
+                            }else{
+                                window.location.href = "{!! URL::to('admin/member-focal') !!}";
+                            }
                         }else{
                             new PNotify({
                                 title: 'ERROR',
