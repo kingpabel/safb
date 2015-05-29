@@ -9,23 +9,25 @@
                     <h2 class="heading">SAARC Agri Food Bank Reports From {{ $start_date }} to {{ $end_date }}</h2>
                 </header>
                 <div class="contents">
-                        <table id="example" class="display" cellspacing="0" width="100%">
-                            <thead>
-                            <tr>
-                                <td>Food</td>
-                                <td>Total Quantity</td>
+                    <table id="example" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <td>Food</td>
+                            <td>Total Quantity</td>
+                            <td>Total Price</td>
 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($imports as $data)
+                            <tr>
+                                <td>{{ $data->Food->name }}</td>
+                                <td>{{ $data->total_quantity }} {{ $data->Unit->name }}</td>
+                                <td>{{ '$'.number_format($data->total_price, 2) }}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($requirements as $data)
-                                <tr>
-                                    <td>{{ $data->Food->name }}</td>
-                                    <td>{{ $data->total_quantity }} {{ $data->Unit->name }}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
