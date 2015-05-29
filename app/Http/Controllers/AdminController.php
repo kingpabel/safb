@@ -516,6 +516,37 @@ class AdminController extends  Controller{
         return view('admin.reportImportFoodForm', $data);
     }
 
+    public  function getReportImportMember()
+    {
+        $data['foods'] = Food::all();
+        return view('admin.reportImportFoodMember', $data);
+    }
+
+    public function postReportImportMember(){
+
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $query = ImportExport::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
+            ->selectRaw('SUM(price * quantity) as total_price')
+            ->where('import_saarc',1)
+            ->where('status',1)
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('food_id'))
+            $query = $query->where('food_id', Input::get('food_id'));
+
+
+        $data['imports'] = $query->groupBy('food_id')->get();
+        if($data['imports']->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-import-member');
+        }
+        return view('admin.reportImport',$data);
+    }
+
     public function postReportImportFood(){
 
         $startDate = Input::get('start_date');

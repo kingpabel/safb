@@ -130,7 +130,7 @@
                                 <li><a href="{!! URL::to('admin/report-requirement') !!}"><i class="fa fa-forumbee"></i>&nbsp; Annual Requirements</a></li>
                                 <li><a href="{!! URL::to('admin/report-production') !!}"><i class="fa fa-group"></i>&nbsp; Annual Production</a></li>
                                 <li><a href="{!! URL::to('admin/report-import-food') !!}"><i class="fa fa-forward"></i>&nbsp; Import of Food Grains</a></li>
-                                <li><a href="food-requirement.html"><i class="fa fa-bars"></i>&nbsp; Import from SAARC Members</a></li>
+                                <li><a href="{!! URL::to('admin/report-import-member') !!}"><i class="fa fa-bars"></i>&nbsp; Import from SAARC Members</a></li>
                                 <li><a href="export-food.html"><i class="fa fa-backward"></i>&nbsp; Export of Food Grains</a></li>
                                 <li><a href="storage-location.html"><i class="fa fa-database"></i>&nbsp; Storage Location & Quantity</a></li>
                                 <li><a href="damage-report.html"><i class="fa fa-bar-chart"></i>&nbsp; Food Grain Damage Reports</a></li>
