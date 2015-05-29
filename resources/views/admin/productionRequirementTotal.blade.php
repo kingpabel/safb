@@ -11,6 +11,7 @@
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
+                    <td>Type</td>
                     <td>Start Date</td>
                     <td>End Date</td>
                     <td>Data Type</td>
@@ -24,6 +25,12 @@
                 <tbody>
                 @foreach($productionRequirement as $data)
                 <tr>
+                    <td>
+                        @if($data->data_type_id == 1)
+                            Requirement
+                        @else
+                            Production
+                        @endif</td>
                     <td>{{ $data->start_date }}</td>
                     <td>{{ $data->end_date }}</td>
                     <td>{{ $data->DataType->name }}</td>

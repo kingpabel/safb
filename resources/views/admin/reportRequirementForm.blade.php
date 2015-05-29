@@ -23,7 +23,7 @@
                                     <input required="" type="text" name="end_date" class="form-control" id="to" placeholder="End Date" value="{!! date('Y-m-d') !!}">
                                 </div>
                             </div>
-                        <div class="form-group">
+                        <div class="form-group" id="foodList">
                             <label for="inputEmail3" class="col-sm-2 control-label">Food</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="food_id">
@@ -34,15 +34,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group" id="allDiv">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="report_all"> Report For All Product
+                                        <input id="all" type="checkbox" name="report_all"> Report For All Product
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn style2 btn-default">Report</button>
@@ -56,6 +56,18 @@
     </div>
 
 @endsection
+@section('extraJs')
+<script type="text/javascript" language="javascript">
+    $(document).ready(function(){
+        $("#all").click(function(event) {
+            $("#foodList").toggle();
+        });
+        $("#foodList").change(function(event) {
+            $("#allDiv").hide();
+        });
+    });
+</script>
+    @endsection
 
 @section('extraCss')
     <style>

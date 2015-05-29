@@ -13,6 +13,7 @@ use App\ImportExport;
 use App\DamageType;
 use App\DamageLevel;
 use App\Damage;
+use DB;
 use App\ProductionRequirement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -504,11 +505,25 @@ class AdminController extends  Controller{
     }
 
     public function postReportRequirement(){
+
         $startDate = Input::get('start_date');
         $endDate = Input::get('end_date');
-        return ProductionRequirement::where('data_type_id',1)
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $query = ProductionRequirement::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
+                                        ->where('data_type_id',1)
                                         ->where('start_date','>=',$startDate)
-                                        ->where('end_date','<=',$endDate)
-                                        ->get();
+                                        ->where('end_date','<=',$endDate);
+        if(Input::get('food_id'))
+            $query = $query->where('food_id', Input::get('food_id'));
+
+
+        $data['requirements'] = $query->groupBy('food_id')->get();
+        if($data['requirements']->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-requirement');
+        }
+        return view('admin.reportRequirement',$data);
     }
 }
