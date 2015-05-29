@@ -131,31 +131,15 @@
                                 <li><a href="{!! URL::to('admin/report-production') !!}"><i class="fa fa-group"></i>&nbsp; Annual Production</a></li>
                                 <li><a href="{!! URL::to('admin/report-import-food') !!}"><i class="fa fa-forward"></i>&nbsp; Import of Food Grains</a></li>
                                 <li><a href="{!! URL::to('admin/report-import-member') !!}"><i class="fa fa-bars"></i>&nbsp; Import from SAARC Members</a></li>
-                                <li><a href="export-food.html"><i class="fa fa-backward"></i>&nbsp; Export of Food Grains</a></li>
+                                <li><a href="{!! URL::to('admin/report-export-food') !!}"><i class="fa fa-backward"></i>&nbsp; Export of Food Grains</a></li>
                                 <li><a href="storage-location.html"><i class="fa fa-database"></i>&nbsp; Storage Location & Quantity</a></li>
                                 <li><a href="damage-report.html"><i class="fa fa-bar-chart"></i>&nbsp; Food Grain Damage Reports</a></li>
                             </ul>
                         </li>
-
-                        <li>
-                            <a href="#resolutions" class="view-reports"><i class="fa fa-folder-open-o fa-2x"></i>&nbsp; Resolutions</a>
-                            <ul>
-                                <li><a href="add-resolutions.html" class="view-reports"><i class="fa fa-file-code-o fa-2x"></i>&nbsp; Add Resolutions</a></li>
-                                <li><a href="resolutions-archive.html" class="view-reports"><i class="fa fa-file-archive-o fa-2x"></i>&nbsp; Resolutions Archive</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#newsandposts" class="view-reports"><i class="fa fa-newspaper-o fa-2x"></i>&nbsp; News and Posts</a>
-                            <ul>
-                                <li><a href="add-post.html" class="view-reports"><i class="fa fa-pencil-square fa-2x"></i>&nbsp; Add Post</a></li>
-                                <li><a href="#" class="view-reports"><i class="fa fa-clipboard fa-2x"></i>&nbsp; Comment, Article and News Corner</a></li>
-                            </ul>
-                        </li>
-
                         <li>
                             <a href="#lists" class="view-reports"><i class="fa fa-th-list fa-2x"></i>&nbsp; Lists</a>
                             <ul>
+                                <li><a href="{!! URL::to('admin/add-member') !!}" ><i class="fa fa-list fa-2x"></i>&nbsp; Add Member</a></li>
                                 <li><a href="gb-members.html" class="view-reports"><i class="fa fa-list fa-2x"></i>&nbsp; Governing Board Member List</a></li>
                                 <li><a href="#" class="view-reports"><i class="fa fa-list-ul fa-2x"></i>&nbsp; National Focal Point List</a></li>
                             </ul>

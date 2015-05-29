@@ -15,6 +15,7 @@ use App\DamageLevel;
 use App\Damage;
 use DB;
 use App\ProductionRequirement;
+use App\MemberList;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -519,7 +520,37 @@ class AdminController extends  Controller{
     public  function getReportImportMember()
     {
         $data['foods'] = Food::all();
-        return view('admin.reportImportFoodMember', $data);
+        return view('admin.reportImportMemberForm', $data);
+    }
+
+    public  function getReportExportFood()
+    {
+        $data['foods'] = Food::all();
+        return view('admin.reportExportFoodForm', $data);
+    }
+
+    public function postReportExportFood(){
+
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $query = ImportExport::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
+            ->selectRaw('SUM(price * quantity) as total_price')
+            ->where('status',0)
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('food_id'))
+            $query = $query->where('food_id', Input::get('food_id'));
+
+
+        $data['imports'] = $query->groupBy('food_id')->get();
+        if($data['imports']->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-import-food');
+        }
+        return view('admin.reportImport',$data);
     }
 
     public function postReportImportMember(){
@@ -615,5 +646,37 @@ class AdminController extends  Controller{
             return redirect('admin/report-production');
         }
         return view('admin.reportRequirement',$data);
+    }
+
+    public function getAddMember()
+    {
+        $data['countryList'] = Country::all();
+        return view('admin.addMember', $data);
+     }
+
+    public function postAddMember(){
+        $rules = array(
+            'member_type'=> "required",
+            'name'  => 'required',
+            'country_id'  => 'required',
+            'code'  => 'required',
+        );
+        $messages = array(
+            'member_type.required' => 'Please Select a Member Type',
+            'country_id.required' => 'Please Select A Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $productionRequirement = new MemberList();
+            $productionRequirement->member_type = Input::get('member_type');
+            $productionRequirement->name = Input::get('name');
+            $productionRequirement->country_id = Input::get('country_id');
+            $productionRequirement->code = Input::get('code');
+            $productionRequirement->save();
+            Session::flash('flashSuccess', 'Member Data Added Successfully');
+            return 'true';
+        endif;
     }
 }
