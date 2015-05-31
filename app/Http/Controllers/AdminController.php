@@ -725,4 +725,103 @@ class AdminController extends  Controller{
             return 'true';
         endif;
     }
+
+    public function getReportStorageLocation()
+    {
+        $data['allLocation'] = Location::all();
+        return view('admin.reportStorageLocationForm', $data);
+    }
+
+    public function postReportStorageLocation()
+    {
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $requirementsQuery = ProductionRequirement::select(DB::raw('sum(quantity) as total_quantity'),'location_id','food_id')
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('location_id'))
+            $requirementsQuery = $requirementsQuery->where('location_id', Input::get('location_id'));
+
+        $requirements= $requirementsQuery->groupBy('location_id','food_id')->get();
+
+
+        $eximQuery = ImportExport::select(DB::raw('sum(quantity) as total_quantity'),'location_id','food_id')
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('location_id'))
+            $eximQuery = $eximQuery->where('location_id', Input::get('location_id'));
+
+        $exims = $eximQuery->groupBy('location_id','food_id')->get();
+
+        if($requirements->count() == 0 && $exims->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-storage-location');
+        }
+
+        $newRequirement = array();
+        if($requirements->count() > 0) {
+            foreach($requirements as $key => $requirement){
+                $newRequirement[$key]['total_quantity'] = $requirement->total_quantity;
+                $newRequirement[$key]['food_id'] = $requirement->food_id;
+                $newRequirement[$key]['food_name'] = $requirement->Food->name;
+                $newRequirement[$key]['location_id'] = $requirement->location_id;
+                $newRequirement[$key]['location_name'] = $requirement->Location->name;
+            }
+        }
+
+        $newExim = array();
+        if($exims->count() > 0) {
+            foreach($exims as $key => $exim){
+                $newExim[$key]['total_quantity'] = $exim->total_quantity;
+                $newExim[$key]['food_id'] = $exim->food_id;
+                $newExim[$key]['food_name'] = $exim->Food->name;
+                $newExim[$key]['location_id'] = $exim->location_id;
+                $newExim[$key]['location_name'] = $exim->Location->name;
+            }
+        }
+
+        $totalArray = array_merge($newRequirement,$newExim);
+        $data['totalProductByLocation'] = array_reduce($totalArray, function ($a, $b) {
+            if(isset($a[$b['location_id']]) && isset($a[$b['food_id']]))
+                $a[$b['location_id']][$b['food_id']]['total_quantity'] += $b['total_quantity'];
+            else
+                $a[$b['location_id']][$b['food_id']] = $b;
+            return $a;
+        });
+
+        return view('admin.reportStorageLocation',$data);
+    }
+
+    public function getReportDamage()
+    {
+        $data['allDamageType'] = DamageType::all();
+        return view('admin.reportDamageForm', $data);
+    }
+
+    public function postReportDamage()
+    {
+        $startDate = Input::get('start_date');
+        $endDate = Input::get('end_date');
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+
+        $query = Damage::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
+            ->where('data_type_id',2)
+            ->where('start_date','>=',$startDate)
+            ->where('end_date','<=',$endDate);
+        if(Input::get('food_id'))
+            $query = $query->where('food_id', Input::get('food_id'));
+
+
+        $data['requirements'] = $query->groupBy('food_id')->get();
+        if($data['requirements']->count() == 0) {
+            Session::flash('flashError', "There is no report between $startDate to $endDate");
+            return redirect('admin/report-production');
+        }
+        return view('admin.reportRequirement',$data);
+    }
+
 }

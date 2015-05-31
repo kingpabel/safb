@@ -132,8 +132,8 @@
                                 <li><a href="{!! URL::to('admin/report-import-food') !!}"><i class="fa fa-forward"></i>&nbsp; Import of Food Grains</a></li>
                                 <li><a href="{!! URL::to('admin/report-import-member') !!}"><i class="fa fa-bars"></i>&nbsp; Import from SAARC Members</a></li>
                                 <li><a href="{!! URL::to('admin/report-export-food') !!}"><i class="fa fa-backward"></i>&nbsp; Export of Food Grains</a></li>
-                                <li><a href="storage-location.html"><i class="fa fa-database"></i>&nbsp; Storage Location & Quantity</a></li>
-                                <li><a href="damage-report.html"><i class="fa fa-bar-chart"></i>&nbsp; Food Grain Damage Reports</a></li>
+                                <li><a href="{!! URL::to('admin/report-storage-location') !!}"><i class="fa fa-database"></i>&nbsp; Storage Location & Quantity</a></li>
+                                <li><a href="{!! URL::to('admin/report-damage') !!}"><i class="fa fa-bar-chart"></i>&nbsp; Food Grain Damage Reports</a></li>
                             </ul>
                         </li>
                         <li>
