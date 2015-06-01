@@ -42,10 +42,14 @@
                                 <th class="col-md-4">Country</th>
                                 <td class="col-md-8">
 
-                                    <select class="form-control2" required="" name="country_id" @if(Auth::user()->user_level > 1) readonly disabled @endif>
+                                    <select class="form-control2" required="" name="country_id">
+                                        @if(Auth::user()->user_level > 1)
+                                            <option value="{!! Auth::user()->country_id !!}">{{ Auth::user()->Country->name }}</option>
+                                        @else
                                         @foreach($countryList as $country)
                                             <option value="{!! $country->id !!}" <?php if(Auth::user()->user_level > 1 && Auth::user()->country_id == $country->id){?> selected <?php } ?>>{!! $country->name !!}</option>
                                         @endforeach
+                                            @endif
                                     </select>
 
 
@@ -107,13 +111,7 @@
                     success: function(data) {
                         $('#loader').hide();
                         if(data=='true') {
-                            $("#export")[0].reset();
-                            new PNotify({
-                                title: 'Success',
-                                text: 'Data Saved Successfully',
-                                type: 'success',
-                                delay: 3000
-                            });
+                            window.location.href = "{!! URL::to('admin/export') !!}";
                         }else{
                             new PNotify({
                                 title: 'ERROR',

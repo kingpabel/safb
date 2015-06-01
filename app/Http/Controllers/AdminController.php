@@ -27,7 +27,7 @@ class AdminController extends  Controller{
 
     public function __construct()
     {
-        $notifications = Notification::take(10)->orderBy('created_at', 'desc')->get();
+        $notifications = Notification::take(5)->orderBy('created_at', 'desc')->get();
         View::share ( 'notifications', $notifications );
     }
 
@@ -373,7 +373,7 @@ class AdminController extends  Controller{
             $notification->subject = 'Import Data Created';
             $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Import Data Inserted';
             $notification->save();
-            return 'true';
+            Session::flash('flashSuccess', "Import Data Save Successfully");
             return 'true';
         endif;
     }
@@ -427,7 +427,7 @@ class AdminController extends  Controller{
             $notification->subject = 'Export Data Created';
             $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Export Data Inserted';
             $notification->save();
-            return 'true';
+            Session::flash('flashSuccess', "Export Data Save Successfully");
             return 'true';
         endif;
     }
@@ -505,7 +505,6 @@ class AdminController extends  Controller{
             $notification->subject = 'Damage Data Update';
             $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Update Damage Data';
             $notification->save();
-            return 'true';
             Session::flash('flashSuccess', 'Damage Data Updated Successfully');
             return redirect("admin/damage");
         endif;
@@ -560,7 +559,6 @@ class AdminController extends  Controller{
             $notification->subject = 'Damage Data Created';
             $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Damage Data Inserted';
             $notification->save();
-            return 'true';
             Session::flash('flashSuccess', 'Damage Data Save Successfully');
             return redirect('admin/damage');
         endif;
@@ -982,7 +980,6 @@ class AdminController extends  Controller{
         $notification->subject = 'Production Requirement Data Deleted';
         $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Delete Production Requirement Data';
         $notification->save();
-        return 'true';
         Session::flash('flashSuccess', 'Production Requirement Data Deleted Successfully');
         return redirect('admin/production-requirement');
     }
@@ -996,7 +993,6 @@ class AdminController extends  Controller{
         $notification->subject = 'Import Data Deleted';
         $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Delete Import Data';
         $notification->save();
-        return 'true';
         Session::flash('flashSuccess', 'Import Data Deleted Successfully');
         return redirect('admin/import');
     }
@@ -1010,7 +1006,6 @@ class AdminController extends  Controller{
         $notification->subject = 'Export Data Deleted';
         $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Deleted  Export Data';
         $notification->save();
-        return 'true';
         Session::flash('flashSuccess', 'Export Data Deleted Successfully');
         return redirect('admin/export');
     }
@@ -1024,7 +1019,6 @@ class AdminController extends  Controller{
         $notification->subject = 'Damage Data Created';
         $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Deleted Damage Data';
         $notification->save();
-        return 'true';
         Session::flash('flashSuccess', 'Damage Data Deleted Successfully');
         return redirect('admin/damage');
     }

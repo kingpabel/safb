@@ -42,10 +42,14 @@
                                 <th class="col-md-4">Country</th>
                                 <td class="col-md-8">
 
-                                    <select class="form-control2" required="" name="country_id" @if(Auth::user()->user_level > 1) readonly disabled @endif>
+                                    <select class="form-control2" required="" name="country_id" >
+                                        @if(Auth::user()->user_level > 1)
+                                            <option value="{!! Auth::user()->country_id !!}">{{ Auth::user()->Country->name }}</option>
+                                        @else
                                         @foreach($countryList as $country)
                                             <option value="{!! $country->id !!}" @if($export->country_id == $country->id) selected @endif>{!! $country->name !!}</option>
                                         @endforeach
+                                            @endif
                                     </select>
 
 

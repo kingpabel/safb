@@ -12,6 +12,17 @@ class Notification extends Model {
     public  $timestamp = true;
     protected $fillable = array('*');
 	//
+
+    public function newQuery()
+    {   if(Auth::user()->user_level > 1)
+        {
+            $query = parent::newQuery();
+            $query->where('created_by', '=', Auth::user()->id);
+            return $query;
+        }
+
+    }
+
     public static function boot()
     {
         parent::boot();
