@@ -14,13 +14,14 @@ class ImportExport extends Model {
 	//
 
     public function newQuery()
-    {   if(Auth::user()->user_level > 1)
+    {
+        $query = parent::newQuery();
+        if(Auth::user()->user_level > 1)
         {
-            $query = parent::newQuery();
             $query->where('created_by', '=', Auth::user()->id);
             return $query;
         }
-
+        return $query;
     }
 
     public static function boot()

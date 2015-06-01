@@ -157,6 +157,10 @@
 
                         <li>
                             <a href="#" class="settings"><i class="fa fa-cogs fa-2x"></i>&nbsp; Settings</a>
+                            <ul>
+                                <li><a href="{!! URL::to('admin/personal-settings') !!}" ><i class="fa fa-cogs fa-2x"></i>&nbsp; Personal Settings</a></li>
+                                <li><a href="{!! URL::to('admin/password-change') !!}" class="view-reports"><i class="fa fa-cogs fa-2x"></i>&nbsp; Password Change</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -216,10 +220,9 @@
                             <a href="#"><i class="fa fa-user"></i>&nbsp; Profile</a>
                             <div class="popdown popdown-right settings">
                                 <nav>
-                                    <a href="#"><i class="glyphicon glyphicon-user"></i>Your Profile</a>
-                                    <a href="#"><i class="glyphicon glyphicon-pencil"></i>Edit Account</a>
-                                    <a href="#"><i class="glyphicon glyphicon-question-sign"></i>Get Help</a>
-                                    <a href="#"><i class="glyphicon glyphicon-log-out"></i>Log out</a>
+                                    <a href="{!! URL::to('admin/personal-settings') !!}"><i class="glyphicon glyphicon-pencil"></i>Edit Account</a>
+                                    <a href="{!! URL::to('admin/password-change') !!}"><i class="glyphicon glyphicon-question-sign"></i>Password Change</a>
+                                    <a href="{!! URL::to('admin/logout') !!}"><i class="glyphicon glyphicon-log-out"></i>Log out</a>
                                 </nav>
                             </div>
                         </li>

@@ -34,6 +34,12 @@
                             <strong>{!! Session::get('flashError') !!}!</strong>
                         </div>
                         @endif
+                            @if(Session::has('flashSuccess'))
+                                <div class="alert alert-success alert-dismissible" role="success">
+                                    <button type="button" class="close" data-dismiss="success" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>{!! Session::get('flashSuccess') !!}!</strong>
+                                </div>
+                            @endif
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label" style="color:#967E7E">Email</label>

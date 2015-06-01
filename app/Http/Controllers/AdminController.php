@@ -38,6 +38,7 @@ class AdminController extends  Controller{
 
     public function getLogout()
     {
+        Session::flash('flashSuccess', 'You Are Successfully Logout');
         Auth::logout();
         return redirect('/');
     }
@@ -1021,5 +1022,61 @@ class AdminController extends  Controller{
         $notification->save();
         Session::flash('flashSuccess', 'Damage Data Deleted Successfully');
         return redirect('admin/damage');
+    }
+
+    public function getPersonalSettings()
+    {
+        return view('admin.personalSettings');
+    }
+
+    public function postPersonalSettings(){
+        $id = Auth::user()->id;
+        $rules = array(
+            'user_email'=> "required|unique:users,user_email,$id",
+            'user_first_name'=> "required",
+            'user_last_name'=> "required",
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $user = User::find($id);
+            $user->user_email = Input::get('user_email');
+            $user->user_first_name = Input::get('user_first_name');
+            $user->user_last_name = Input::get('user_last_name');
+            $user->save();
+            Session::flash('flashSuccess', 'Personal Info Updated Successfully');
+            return 'true';
+        endif;
+    }
+
+    public function getPasswordChange()
+    {
+        return view('admin.passwordChange');
+    }
+
+    public function postPasswordChange()
+    {
+        if(!Hash::check(Input::get('old_password'), Auth::user()->getAuthPassword()))
+            return 'Old Password is not Matched';
+
+        $rules = array(
+            'new_password'  => 'required|same:confirm_new_password|min:6',
+        );
+        $messages = array(
+            'new_password.same' => 'New Password and Confirm password are not Matched',
+        );
+        /* Laravel Validator Rules Apply */
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $userUpdate = User::find(Auth::user()->id);
+            $userUpdate->password = Hash::make(Input::get('new_password'));
+            $userUpdate->save();
+        endif;
+        Session::flash('flashSuccess', 'Password Updated Successfully');
+        return 'true';
     }
 }
