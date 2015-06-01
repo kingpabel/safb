@@ -305,6 +305,12 @@ class AdminController extends  Controller{
             $notification->subject = 'Production Requirement Data Created';
             $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Production Requirement Data Inserted';
             $notification->save();
+            if(Input::get('data_type_id') == 1)
+                $dataType = 'Requirement';
+            elseif(Input::get('data_type_id') == 2)
+                $dataType = 'Production';
+
+            Session::flash('flashSuccess', "$dataType Data Save Successfully");
             return 'true';
         endif;
     }

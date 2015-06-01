@@ -106,13 +106,7 @@
                     success: function(data) {
                         $('#loader').hide();
                         if(data=='true') {
-                            $("#productionRequirement")[0].reset();
-                            new PNotify({
-                                title: 'Success',
-                                text: 'Data Saved Successfully',
-                                type: 'success',
-                                delay: 3000
-                            });
+                            window.location.href = "{!! URL::to('admin/production-requirement') !!}";
                         }else{
                             new PNotify({
                                 title: 'ERROR',
