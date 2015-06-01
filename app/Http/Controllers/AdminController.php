@@ -814,20 +814,19 @@ class AdminController extends  Controller{
         $data['start_date'] = $startDate;
         $data['end_date'] = $endDate;
 
-        $query = Damage::select(DB::raw('sum(quantity) as total_quantity'),'food_id','unit_id','start_date','end_date','id')
-            ->where('data_type_id',2)
+        $query = Damage::select(DB::raw('sum(quantity) as total_quantity'),'damage_type_id','id')
             ->where('start_date','>=',$startDate)
             ->where('end_date','<=',$endDate);
-        if(Input::get('food_id'))
-            $query = $query->where('food_id', Input::get('food_id'));
+        if(Input::get('damage_type_id'))
+            $query = $query->where('damage_type_id', Input::get('damage_type_id'));
 
 
-        $data['requirements'] = $query->groupBy('food_id')->get();
-        if($data['requirements']->count() == 0) {
+        $data['damages'] = $query->groupBy('damage_type_id')->get();
+        if($data['damages']->count() == 0) {
             Session::flash('flashError', "There is no report between $startDate to $endDate");
-            return redirect('admin/report-production');
+            return redirect('admin/report-damage');
         }
-        return view('admin.reportRequirement',$data);
+        return view('admin.reportDamage',$data);
     }
 
     public function getAddUser()
