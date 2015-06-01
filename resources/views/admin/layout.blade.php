@@ -136,6 +136,7 @@
                                 <li><a href="{!! URL::to('admin/report-damage') !!}"><i class="fa fa-bar-chart"></i>&nbsp; Food Grain Damage Reports</a></li>
                             </ul>
                         </li>
+                        @if(Auth::user()->user_level == 1)
                         <li>
                             <a href="#lists" class="view-reports"><i class="fa fa-th-list fa-2x"></i>&nbsp; Lists</a>
                             <ul>
@@ -152,6 +153,7 @@
                                 <li><a href="{!! URL::to('admin/user-list') !!}" class="view-reports"><i class="fa fa-list fa-2x"></i>&nbsp; Users List</a></li>
                             </ul>
                         </li>
+                        @endif
 
                         <li>
                             <a href="#" class="settings"><i class="fa fa-cogs fa-2x"></i>&nbsp; Settings</a>

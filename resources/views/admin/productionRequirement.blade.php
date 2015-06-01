@@ -29,13 +29,13 @@
                         <tbody>
                         <tr>
                             <th class="col-md-4">Start Date</th>
-                            <td class="col-md-8"><input required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ date('Y-m-d') }}">
+                            <td class="col-md-8"><input readonly required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ date('Y-m-d') }}">
                                &nbsp; <label class="redtext">*</label>
                             </td>
                         </tr>
                         <tr>
                             <th class="col-md-4">End Date</th>
-                            <td class="col-md-8"><input required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ date('Y-m-d') }}">
+                            <td class="col-md-8"><input readonly required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ date('Y-m-d') }}">
                                 &nbsp; <label class="redtext">*</label>
                             </td>
                         </tr>

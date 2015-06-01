@@ -15,13 +15,13 @@
                             <thead>
                             <tr>
                                 <th class="col-md-4">Start Date</th>
-                                <td class="col-md-8"><input required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ date('Y-m-d') }}">
+                                <td class="col-md-8"><input readonly required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ date('Y-m-d') }}">
                                     &nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">End Date</th>
-                                <td class="col-md-8"><input required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ date('Y-m-d') }}">
+                                <td class="col-md-8"><input readonly required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ date('Y-m-d') }}">
                                     &nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
@@ -42,9 +42,9 @@
                                 <th class="col-md-4">Country</th>
                                 <td class="col-md-8">
 
-                                    <select class="form-control2" required="" name="country_id">
+                                    <select class="form-control2" required="" name="country_id" @if(Auth::user()->user_level > 1) readonly disabled @endif>
                                         @foreach($countryList as $country)
-                                            <option value="{!! $country->id !!}">{!! $country->name !!}</option>
+                                            <option value="{!! $country->id !!}" <?php if(Auth::user()->user_level > 1 && Auth::user()->country_id == $country->id){?> selected <?php } ?>>{!! $country->name !!}</option>
                                         @endforeach
                                     </select>
 
@@ -56,7 +56,7 @@
                                 <td class="col-md-8"><input type="text" placeholder="Quantity" required="" class="form-control3 number" name="quantity">
                                     <select class="form-control4" required="" name="unit_id">
                                         @foreach($unitList as $unit)
-                                            <option value="{!! $unit->id !!}">{!! $unit->name !!}</option>
+                                            <option value="{!! $unit->id !!}" >{!! $unit->name !!}</option>
                                         @endforeach
                                     </select>&nbsp; <label class="redtext">*</label>
                                 </td>

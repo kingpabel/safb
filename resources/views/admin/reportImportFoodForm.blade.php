@@ -14,13 +14,13 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
                                 <div class="col-sm-3">
-                                    <input required="" type="text" name="start_date" class="form-control" id="from" placeholder="Start Date" value="{!! date('Y-m-d') !!}">
+                                    <input readonly required="" type="text" name="start_date" class="form-control" id="from" placeholder="Start Date" value="{!! date('Y-m-d') !!}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
                                 <div class="col-sm-3">
-                                    <input required="" type="text" name="end_date" class="form-control" id="to" placeholder="End Date" value="{!! date('Y-m-d') !!}">
+                                    <input readonly required="" type="text" name="end_date" class="form-control" id="to" placeholder="End Date" value="{!! date('Y-m-d') !!}">
                                 </div>
                             </div>
                         <div class="form-group" id="foodList">

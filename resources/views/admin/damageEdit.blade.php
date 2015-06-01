@@ -16,13 +16,13 @@
                             <thead>
                             <tr>
                                 <th class="col-md-4">Start Date</th>
-                                <td class="col-md-8"><input required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ $damage->start_date }}">
+                                <td class="col-md-8"><input readonly required="" type="text" placeholder="Start Date" name="start_date" class="form-control3" id="from" value="{{ $damage->start_date }}">
                                     &nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">End Date</th>
-                                <td class="col-md-8"><input required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ $damage->end_date }}">
+                                <td class="col-md-8"><input readonly required="" type="text" placeholder="End Date" name="end_date" class="form-control3" id="to" value="{{ $damage->end_date }}">
                                     &nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
