@@ -20,7 +20,7 @@
                                         <option value="">Plese Select a Member Type</option>
                                         <option value="1">Governing Body</option>
                                         <option value="2">National Focal</option>
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
 
                                 </td>
@@ -39,7 +39,7 @@
                                         @foreach($countryList as $country)
                                             <option value="{!! $country->id !!}">{!! $country->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
 

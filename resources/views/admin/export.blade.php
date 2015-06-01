@@ -32,7 +32,7 @@
                                         @foreach($foodList as $food)
                                             <option value="{!! $food->id !!}">{!! $food->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
@@ -50,7 +50,7 @@
                                             <option value="{!! $country->id !!}" <?php if(Auth::user()->user_level > 1 && Auth::user()->country_id == $country->id){?> selected <?php } ?>>{!! $country->name !!}</option>
                                         @endforeach
                                             @endif
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
 
                                 </td>
@@ -79,7 +79,7 @@
                                         @foreach($locationList as $local)
                                             <option value="{!! $local->id !!}">{!! $local->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>

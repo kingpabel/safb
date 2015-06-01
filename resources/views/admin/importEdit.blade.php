@@ -32,7 +32,7 @@
                                         @foreach($foodList as $food)
                                             <option value="{!! $food->id !!}" @if($import->food_id == $food->id) selected @endif>{!! $food->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
@@ -60,7 +60,7 @@
                                             <option value="{!! $country->id !!}" @if($import->courntry_id == $country->id) selected @endif>{!! $country->name !!}</option>
                                         @endforeach
                                             @endif
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
 
                                 </td>
@@ -91,7 +91,7 @@
                                         @foreach($locationList as $local)
                                             <option value="{!! $local->id !!}" @if($import->location_id == $local->id) selected @endif>{!! $local->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>

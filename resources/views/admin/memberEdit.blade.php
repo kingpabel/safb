@@ -20,7 +20,7 @@
                                         <option value="">Plese Select a Member Type</option>
                                         <option value="1" @if($member->member_type == 1) selected @endif>Governing Body</option>
                                         <option value="2"  @if($member->member_type == 2) selected @endif>National Focal</option>
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
 
                                 </td>
@@ -39,7 +39,7 @@
                                         @foreach($countryList as $country)
                                             <option value="{!! $country->id !!}" @if($member->country_id == $country->id) selected @endif>{!! $country->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
 

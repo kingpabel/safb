@@ -33,14 +33,14 @@
                                         @foreach($foodList as $food)
                                             <option value="{!! $food->id !!}" @if($damage->food_id == $food->id) selected @endif>{!! $food->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">Quantity</th>
                                 <td class="col-md-8">
-                                    <input class="form-control2" name="quantity" required="" value="{{ $damage->quantity }}">
+                                    <input class="form-control2" name="quantity" required="" value="{{ $damage->quantity }}">&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             </thead>
@@ -52,7 +52,7 @@
                                         @foreach($locationList as $location)
                                             <option value="{!! $location->id !!}" @if($damage->location_id == $location->id) selected @endif>{!! $location->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
@@ -63,7 +63,7 @@
                                         @foreach($damageList as $damaged)
                                             <option value="{!! $damaged->id !!}" @if($damage->damage_type_id == $damaged->id) selected @endif>{!! $damaged->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>
@@ -74,7 +74,7 @@
                                         @foreach($damageLevelList as $damageLevel)
                                             <option value="{!! $damageLevel->id !!}" @if($damage->damage_level_id == $damageLevel->id) selected @endif>{!! $damageLevel->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>

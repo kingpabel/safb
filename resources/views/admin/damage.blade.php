@@ -32,14 +32,14 @@
                                         @foreach($foodList as $food)
                                         <option value="{!! $food->id !!}">{!! $food->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">Quantity</th>
                                 <td class="col-md-8">
-                                    <input type="text" class="form-control2 number" name="quantity" required="" placeholder="Quantity">
+                                    <input type="text" class="form-control2 number" name="quantity" required="" placeholder="Quantity">&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             </thead>
@@ -51,7 +51,7 @@
                                     @foreach($locationList as $location)
                                         <option value="{!! $location->id !!}">{!! $location->name !!}</option>
                                     @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
@@ -62,7 +62,7 @@
                                         @foreach($damageList as $damage)
                                         <option value="{!! $damage->id !!}">{!! $damage->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>
@@ -73,12 +73,12 @@
                                         @foreach($damageLevelList as $damageLevel)
                                         <option value="{!! $damageLevel->id !!}">{!! $damageLevel->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">Report in details
-                                </th><td class="col-md-8"><textarea rows="6" class="form-control" required="" name="details" placeholder="Enter your text here..."></textarea></td>
+                                </th><td class="col-md-8"><textarea rows="6" class="form-control" required="" name="details" placeholder="Enter your text here..."></textarea>&nbsp; <label class="redtext">*</label></td>
                             </tr>
 
                             <tr>

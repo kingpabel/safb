@@ -46,7 +46,7 @@
                                     @foreach($foodList as $food)
                                     <option value="{!! $food->id !!}">{!! $food->name !!}</option>
                                     @endforeach
-                                </select>
+                                </select>&nbsp; <label class="redtext">*</label>
 
                             </td>
                         </tr>
@@ -68,7 +68,7 @@
                                     @foreach($locationList as $location)
                                     <option value="{!! $location->id !!}">{!! $location->name !!}</option>
                                     @endforeach
-                                </select>
+                                </select>&nbsp; <label class="redtext">*</label>
 
                             </td>
                         </tr>

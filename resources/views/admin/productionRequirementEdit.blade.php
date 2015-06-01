@@ -47,7 +47,7 @@
                                         @foreach($foodList as $food)
                                             <option value="{!! $food->id !!}" @if($productRequirementData->food_id == $food->id) selected @endif>{!! $food->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
@@ -69,7 +69,7 @@
                                         @foreach($locationList as $location)
                                             <option value="{!! $location->id !!}" @if($productRequirementData->location_id == $location->id) selected @endif>{!! $location->name !!}</option>
                                         @endforeach
-                                    </select>
+                                    </select>&nbsp; <label class="redtext">*</label>
 
                                 </td>
                             </tr>
