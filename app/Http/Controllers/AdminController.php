@@ -2,6 +2,7 @@
 
 namespace app\Http\Controllers;
 
+use App\Notification;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,12 +17,19 @@ use App\DamageType;
 use App\DamageLevel;
 use App\Damage;
 use DB;
+use Illuminate\Support\Facades\View;
 use App\ProductionRequirement;
 use App\MemberList;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 class AdminController extends  Controller{
+
+    public function __construct()
+    {
+        $notifications = Notification::take(10)->orderBy('created_at', 'desc')->get();
+        View::share ( 'notifications', $notifications );
+    }
 
     public function getIndex()
     {
@@ -97,6 +105,12 @@ class AdminController extends  Controller{
             $productionRequirement->unit_id = Input::get('unit_id');
             $productionRequirement->location_id = Input::get('location_id');
             $productionRequirement->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Production Requirement Data Updated';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Update Production Requirement Data';
+            $notification->save();
+
             Session::flash('flashSuccess', 'Production Requirement Data Updated Successfully');
             return 'true';
         endif;
@@ -165,6 +179,12 @@ class AdminController extends  Controller{
             $import->location_id = Input::get('location_id');
             $import->status = 1;
             $import->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Import Data Updated';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Update Import Data';
+            $notification->save();
+
             Session::flash('flashSuccess', 'Import Data Update Successfully');
             return 'true';
         endif;
@@ -233,6 +253,12 @@ class AdminController extends  Controller{
             $import->location_id = Input::get('location_id');
             $import->status = 0;
             $import->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Export Data Updated';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Update Export Data';
+            $notification->save();
+
             Session::flash('flashSuccess', 'Export Data Updated Successfully');
             return 'true';
         endif;
@@ -274,6 +300,11 @@ class AdminController extends  Controller{
             $productionRequirement->unit_id = Input::get('unit_id');
             $productionRequirement->location_id = Input::get('location_id');
             $productionRequirement->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Production Requirement Data Created';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Production Requirement Data Inserted';
+            $notification->save();
             return 'true';
         endif;
     }
@@ -331,6 +362,12 @@ class AdminController extends  Controller{
             $import->location_id = Input::get('location_id');
             $import->status = 1;
             $import->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Import Data Created';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Import Data Inserted';
+            $notification->save();
+            return 'true';
             return 'true';
         endif;
     }
@@ -379,6 +416,12 @@ class AdminController extends  Controller{
             $import->location_id = Input::get('location_id');
             $import->status = 0;
             $import->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Export Data Created';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Export Data Inserted';
+            $notification->save();
+            return 'true';
             return 'true';
         endif;
     }
@@ -451,6 +494,12 @@ class AdminController extends  Controller{
             if(isset($filename))
                 $damage->file = $filename;
             $damage->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Damage Data Update';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Update Damage Data';
+            $notification->save();
+            return 'true';
             Session::flash('flashSuccess', 'Damage Data Updated Successfully');
             return redirect("admin/damage");
         endif;
@@ -500,6 +549,12 @@ class AdminController extends  Controller{
             if(isset($filename))
                 $damage->file = $filename;
             $damage->save();
+
+            $notification = new Notification();
+            $notification->subject = 'Damage Data Created';
+            $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Damage Data Inserted';
+            $notification->save();
+            return 'true';
             Session::flash('flashSuccess', 'Damage Data Save Successfully');
             return redirect('admin/damage');
         endif;
@@ -916,6 +971,12 @@ class AdminController extends  Controller{
     {
         $delete = ProductionRequirement::find($id);
         $delete->delete();
+
+        $notification = new Notification();
+        $notification->subject = 'Production Requirement Data Deleted';
+        $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Delete Production Requirement Data';
+        $notification->save();
+        return 'true';
         Session::flash('flashSuccess', 'Production Requirement Data Deleted Successfully');
         return redirect('admin/production-requirement');
     }
@@ -924,6 +985,12 @@ class AdminController extends  Controller{
     {
         $delete = ImportExport::find($id);
         $delete->delete();
+
+        $notification = new Notification();
+        $notification->subject = 'Import Data Deleted';
+        $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Delete Import Data';
+        $notification->save();
+        return 'true';
         Session::flash('flashSuccess', 'Import Data Deleted Successfully');
         return redirect('admin/import');
     }
@@ -932,6 +999,12 @@ class AdminController extends  Controller{
     {
         $delete = ImportExport::find($id);
         $delete->delete();
+
+        $notification = new Notification();
+        $notification->subject = 'Export Data Deleted';
+        $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Deleted  Export Data';
+        $notification->save();
+        return 'true';
         Session::flash('flashSuccess', 'Export Data Deleted Successfully');
         return redirect('admin/export');
     }
@@ -940,6 +1013,12 @@ class AdminController extends  Controller{
     {
         $delete = Damage::find($id);
         $delete->delete();
+
+        $notification = new Notification();
+        $notification->subject = 'Damage Data Created';
+        $notification->body = Auth::user()->user_first_name.' '.Auth::user()->user_last_name.' Deleted Damage Data';
+        $notification->save();
+        return 'true';
         Session::flash('flashSuccess', 'Damage Data Deleted Successfully');
         return redirect('admin/damage');
     }

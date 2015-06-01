@@ -197,28 +197,15 @@
                             <div class="popdown">
                                 <div class="notificationlist">
                                     <ul>
+                                        @foreach($notifications as $notification)
                                         <li>
-                                            <h6><a href="#">Demo work done 1</a></h6>
-                                            <p>Demo work done data 1.</p>
-                                            <span><i class="glyphicon glyphicon-time"></i>1hrs ago</span>
+                                            <h6><a href="#">{{ $notification->subject }}</a></h6>
+                                            <p>{{ $notification->body }}</p>
+                                            {{--<span><i class="glyphicon glyphicon-time"></i>1hrs ago</span>--}}
                                         </li>
-                                        <li>
-                                            <h6><a href="#">Demo work done 2</a></h6>
-                                            <p>Demo work done data 2 !</p>
-                                            <span><i class="glyphicon glyphicon-time"></i>1hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <h6><a href="#">Demo work done 3</a></h6>
-                                            <p>Demo work done data 3 !</p>
-                                            <span><i class="glyphicon glyphicon-time"></i>2hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <h6><a href="#">New export from Bangladesh to Bhutan</a></h6>
-                                            <p>This is the demo data</p>
-                                            <span><i class="glyphicon glyphicon-time"></i>6hrs ago</span>
-                                        </li>
+                                        @endforeach
                                     </ul>
-                                    <a href="#" class="viewall">View All Notifications</a>
+                                    {{--<a href="#" class="viewall">View All Notifications</a>--}}
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
