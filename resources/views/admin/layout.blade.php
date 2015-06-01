@@ -146,6 +146,14 @@
                         </li>
 
                         <li>
+                            <a href="#lists" class="view-reports"><i class="fa fa-th-list fa-2x"></i>&nbsp; Users</a>
+                            <ul>
+                                <li><a href="{!! URL::to('admin/add-user') !!}" ><i class="fa fa-list fa-2x"></i>&nbsp; Add Users</a></li>
+                                <li><a href="{!! URL::to('admin/user-list') !!}" class="view-reports"><i class="fa fa-list fa-2x"></i>&nbsp; Users List</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
                             <a href="#" class="settings"><i class="fa fa-cogs fa-2x"></i>&nbsp; Settings</a>
                         </li>
                     </ul>

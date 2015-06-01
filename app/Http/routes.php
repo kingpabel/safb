@@ -31,5 +31,9 @@ Route::post('admin/damage/{id}/edit', 'AdminController@postDamageEdit');
 
 Route::get('admin/member/{id}/edit', 'AdminController@getMemberEdit');
 Route::post('admin/member/{id}/edit', 'AdminController@postMemberEdit');
+
+Route::get('admin/user/{id}/edit', 'AdminController@getUserEdit');
+Route::post('admin/user/{id}/edit/username', 'AdminController@postUserEditUsername');
+Route::post('admin/user/{id}/edit/password', 'AdminController@postUserEditPassword');
 //Route::get('admin/production-requirements/{id}', ['uses' => 'AdminController@production-requirement', 'as' => 'id']);
 Route::controller('admin', 'AdminController');

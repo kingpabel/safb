@@ -2,7 +2,9 @@
 
 namespace app\Http\Controllers;
 
+use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use Session;
 use App\DataType;
 use App\Food;
@@ -824,4 +826,86 @@ class AdminController extends  Controller{
         return view('admin.reportRequirement',$data);
     }
 
+    public function getAddUser()
+    {
+        $data['allCountry'] = Country::all();
+        return view('admin.userAdd', $data);
+    }
+
+    public function postAddUser()
+    {
+        $rules = array(
+            'user_email'=> "required|unique:users,user_email",
+            'password'  => 'required|min:6|max:10',
+            'country_id'  => 'required',
+        );
+
+        $messages = array(
+            'country_id.required' => 'Please Select A Country',
+        );
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $user = new User();
+            $user->user_email = Input::get('user_email');
+            $user->country_id = Input::get('country_id');
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+            Session::flash('flashSuccess', 'User Added Successfully');
+            return 'true';
+        endif;
+    }
+
+    public function getUserList(){
+        $data['allUser'] = User::where('user_level', 2)->get();
+        return view('admin.allUser', $data);
+    }
+
+    public function getUserEdit($id)
+    {
+        $data['user'] = User::find($id);
+        $data['allCountry'] = Country::all();
+        return view('admin.userEdit', $data);
+    }
+
+    public function postUserEditPassword($id)
+    {
+        $rules = array(
+            'password'  => 'required|min:6|max:10',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $user = User::find($id);
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+            Session::flash('flashSuccess', 'Password Updated Successfully');
+            return 'true';
+        endif;
+    }
+    public function postUserEditUsername($id)
+    {
+        $rules = array(
+            'user_email'=> "required|unique:users,user_email,$id",
+            'country_id'  => 'required',
+        );
+
+        $messages = array(
+            'country_id.required' => 'Please Select A Country',
+        );
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $user = User::find($id);
+            $user->user_email = Input::get('user_email');
+            $user->country_id = Input::get('country_id');
+            $user->save();
+            Session::flash('flashSuccess', 'User Name Updated Successfully');
+            return 'true';
+        endif;
+    }
 }
