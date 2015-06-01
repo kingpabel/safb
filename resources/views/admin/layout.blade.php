@@ -190,10 +190,10 @@
                 </div>
                 <!-- User Section End -->
                 <!-- Search Section Start -->
-                <div class="search-box">
+                {{--<div class="search-box">
                     <input type="text" placeholder="Search Anything" />
                     <input type="submit" value="go" />
-                </div>
+                </div>--}}
                 <!-- Search Section End -->
                 <!-- Header Top Navigation Start -->
                 <nav class="topnav">

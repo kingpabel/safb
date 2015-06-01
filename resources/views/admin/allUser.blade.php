@@ -25,6 +25,7 @@
                                 <td>{{ @$user->Country->name }}</td>
                                 <td>
                                     <a href='{!! URL::to("admin/user/$user->id/edit") !!}' class="btn-primary">Update</a>
+                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href='{!! URL::to("admin/user-delete/$user->id") !!}' class="btn-primary">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

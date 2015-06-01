@@ -33,7 +33,9 @@ class AdminController extends  Controller{
 
     public function getIndex()
     {
-        return view('admin.home');
+        $data['productionRequirement'] = ProductionRequirement::take(5)->get();
+        $data['damageAll'] = Damage::take(5)->get();
+        return view('admin.home',$data);
     }
 
     public function getLogout()
@@ -967,7 +969,7 @@ class AdminController extends  Controller{
             $user->user_email = Input::get('user_email');
             $user->country_id = Input::get('country_id');
             $user->save();
-            Session::flash('flashSuccess', 'User Name Updated Successfully');
+            Session::flash('flashSuccess', 'User Information Updated Successfully');
             return 'true';
         endif;
     }
@@ -1078,5 +1080,35 @@ class AdminController extends  Controller{
         endif;
         Session::flash('flashSuccess', 'Password Updated Successfully');
         return 'true';
+    }
+
+    public function getUserDelete($id){
+        $delete = User::find($id);
+        $delete->delete();
+
+        ProductionRequirement::where('created_by', $id)->delete();
+
+        ImportExport::where('created_by', $id)->delete();
+
+        Damage::where('created_by', $id)->delete();
+
+        Session::flash('flashSuccess', 'User Deleted Successfully');
+        return redirect('admin/user-list');
+    }
+
+    public function getMemberDelete($id)
+    {
+        $delete = MemberList::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'Governing Body Member Deleted Successfully');
+        return redirect('admin/member-governing');
+    }
+
+    public function getMemberDeleteFocal($id)
+    {
+        $delete = MemberList::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'National Focal Point Member Deleted Successfully');
+        return redirect('admin/member-focal');
     }
 }
