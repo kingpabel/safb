@@ -29,6 +29,13 @@
                                     {{ $damage->Food->name }}
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th class="col-md-4">Quantity</th>
+                                <td class="col-md-8">
+                                    {{ $damage->quantity }}
+                                </td>
+                            </tr>
                             </thead>
                             <tbody>
                             <tr>

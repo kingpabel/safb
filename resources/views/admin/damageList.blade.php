@@ -14,6 +14,7 @@
                             <td>Start Date</td>
                             <td>End Date</td>
                             <td>Food</td>
+                            <td>Quantity</td>
                             <td>Location</td>
                             <td>Damage Type</td>
                             <td>Damage Level</td>
@@ -26,6 +27,7 @@
                                 <td>{{ $damage->start_date }}</td>
                                 <td>{{ $damage->end_date }}</td>
                                 <td>{{ $damage->Food->name }}</td>
+                                <td>{{ $damage->quantity }}</td>
                                 <td>{{ $damage->Location->name }}</td>
                                 <td>{{ $damage->DamageType->name }}</td>
                                 <td>{{ $damage->DamageLevel->name }}</td>

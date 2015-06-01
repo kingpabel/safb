@@ -414,6 +414,7 @@ class AdminController extends  Controller{
             'end_date'  => 'required|date_format:Y-m-d',
             'food_id'  => 'required',
             'location_id'  => 'required',
+            'quantity'  => 'required|numeric',
             'damage_type_id'  => 'required',
             'damage_level_id'  => 'required',
             'details'  => 'required',
@@ -443,6 +444,7 @@ class AdminController extends  Controller{
             $damage->end_date = Input::get('end_date');
             $damage->food_id = Input::get('food_id');
             $damage->location_id = Input::get('location_id');
+            $damage->quantity = Input::get('quantity');
             $damage->damage_type_id = Input::get('damage_type_id');
             $damage->damage_level_id = Input::get('damage_level_id');
             $damage->details = Input::get('details');
@@ -461,6 +463,7 @@ class AdminController extends  Controller{
             'end_date'  => 'required|date_format:Y-m-d',
             'food_id'  => 'required',
             'location_id'  => 'required',
+            'quantity'  => 'required|numeric',
             'damage_type_id'  => 'required',
             'damage_level_id'  => 'required',
             'details'  => 'required',
@@ -490,6 +493,7 @@ class AdminController extends  Controller{
             $damage->end_date = Input::get('end_date');
             $damage->food_id = Input::get('food_id');
             $damage->location_id = Input::get('location_id');
+            $damage->quantity = Input::get('quantity');
             $damage->damage_type_id = Input::get('damage_type_id');
             $damage->damage_level_id = Input::get('damage_level_id');
             $damage->details = Input::get('details');
