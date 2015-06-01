@@ -911,4 +911,36 @@ class AdminController extends  Controller{
             return 'true';
         endif;
     }
+
+    public function getProductionRequirementDelete($id)
+    {
+        $delete = ProductionRequirement::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'Production Requirement Data Deleted Successfully');
+        return redirect('admin/production-requirement');
+    }
+
+    public function getImportDelete($id)
+    {
+        $delete = ImportExport::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'Import Data Deleted Successfully');
+        return redirect('admin/import');
+    }
+
+    public function getExportDelete($id)
+    {
+        $delete = ImportExport::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'Export Data Deleted Successfully');
+        return redirect('admin/export');
+    }
+
+    public function getDamageDelete($id)
+    {
+        $delete = Damage::find($id);
+        $delete->delete();
+        Session::flash('flashSuccess', 'Damage Data Deleted Successfully');
+        return redirect('admin/damage');
+    }
 }

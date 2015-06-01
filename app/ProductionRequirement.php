@@ -1,9 +1,13 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 
 class ProductionRequirement extends Model {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
     protected  $table = 'production_requirement';
     public  $timestamp = true;
     protected $fillable = array('*');

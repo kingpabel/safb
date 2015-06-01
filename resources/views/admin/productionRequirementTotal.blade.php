@@ -40,6 +40,7 @@
                     <td>
                         <a href='{!! URL::to("admin/production-requirements/$data->id") !!}' class="btn-primary">View</a>
                         <a href='{!! URL::to("admin/production-requirements/$data->id/edit") !!}' class="btn-primary">Update</a>
+                        <a onclick="return confirm('Are you sure you want to delete this item?');" href='{!! URL::to("admin/production-requirements/$data->id/delete") !!}' class="btn-primary">Delete</a>
                     </td>
                 </tr>
                 @endforeach

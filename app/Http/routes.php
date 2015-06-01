@@ -16,18 +16,22 @@ Route::controller('login', 'LoginController');
 Route::get('admin/production-requirements/{id}', 'AdminController@getProductionRequirementShow');
 Route::get('admin/production-requirements/{id}/edit', 'AdminController@getProductionRequirementEdit');
 Route::post('admin/production-requirements/{id}/edit', 'AdminController@postProductionRequirementEdit');
+Route::get('admin/production-requirements/{id}/delete', 'AdminController@getProductionRequirementDelete');
 
 Route::get('admin/import/{id}', 'AdminController@getImportShow');
 Route::get('admin/import/{id}/edit', 'AdminController@getImportEdit');
 Route::post('admin/import/{id}/edit', 'AdminController@postImportEdit');
+Route::get('admin/import/{id}/delete', 'AdminController@getImportDelete');
 
 Route::get('admin/export/{id}', 'AdminController@getExportShow');
 Route::get('admin/export/{id}/edit', 'AdminController@getExportEdit');
 Route::post('admin/export/{id}/edit', 'AdminController@postExportEdit');
+Route::get('admin/export/{id}/delete', 'AdminController@getExportDelete');
 
 Route::get('admin/damage/{id}', 'AdminController@getDamageShow');
 Route::get('admin/damage/{id}/edit', 'AdminController@getDamageEdit');
 Route::post('admin/damage/{id}/edit', 'AdminController@postDamageEdit');
+Route::get('admin/damage/{id}/delete', 'AdminController@getDamageDelete');
 
 Route::get('admin/member/{id}/edit', 'AdminController@getMemberEdit');
 Route::post('admin/member/{id}/edit', 'AdminController@postMemberEdit');
