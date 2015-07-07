@@ -160,6 +160,7 @@
                             <ul>
                                 <li><a href="{!! URL::to('admin/personal-settings') !!}" ><i class="fa fa-cogs fa-2x"></i>&nbsp; Personal Settings</a></li>
                                 <li><a href="{!! URL::to('admin/password-change') !!}" class="view-reports"><i class="fa fa-cogs fa-2x"></i>&nbsp; Password Change</a></li>
+                                <li><a href="{!! URL::to('admin/location') !!}" class="view-reports"><i class="fa fa-cogs fa-2x"></i>&nbsp; Location</a></li>
                             </ul>
                         </li>
                     </ul>

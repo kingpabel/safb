@@ -33,6 +33,10 @@ Route::get('admin/damage/{id}/edit', 'AdminController@getDamageEdit');
 Route::post('admin/damage/{id}/edit', 'AdminController@postDamageEdit');
 Route::get('admin/damage/{id}/delete', 'AdminController@getDamageDelete');
 
+Route::get('admin/location/{id}/edit', 'AdminController@getLocationEdit');
+Route::post('admin/location/{id}/edit', 'AdminController@postLocationEdit');
+Route::get('admin/location/{id}/delete', 'AdminController@getLocationDelete');
+
 Route::get('admin/member/{id}/edit', 'AdminController@getMemberEdit');
 Route::post('admin/member/{id}/edit', 'AdminController@postMemberEdit');
 

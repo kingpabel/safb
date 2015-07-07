@@ -1111,4 +1111,66 @@ class AdminController extends  Controller{
         Session::flash('flashSuccess', 'National Focal Point Member Deleted Successfully');
         return redirect('admin/member-focal');
     }
+
+    public function getLocation()
+    {
+        $data['allLocation'] = Location::all();
+        return view('admin.location', $data);
+    }
+
+    public function getLocationEdit($id)
+    {
+        $data['location'] = Location::find($id);
+        return view('admin.locationEdit', $data);
+    }
+
+    public function postLocationEdit($id)
+    {
+        $rules = array(
+            'name'=> "required|unique:location,name,$id",
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $location = Location::find($id);
+            $location->name = Input::get('name');
+            $location->save();
+            Session::flash('flashSuccess', 'Location Updated Successfully');
+            return 'true';
+        endif;
+    }
+
+    public function postLocation()
+    {
+        $rules = array(
+            'name'=> "required|unique:location,name",
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()):
+            return $validator->messages()->first();
+        else:
+            $location = new Location();
+            $location->name = Input::get('name');
+            $location->save();
+            Session::flash('flashSuccess', 'Location Created Successfully');
+            return 'true';
+        endif;
+    }
+
+    public function getLocationDelete($id)
+    {
+        $delete = Location::find($id);
+        $delete->delete();
+
+        Damage::where('location_id', $id)->delete();
+        ImportExport::where('location_id', $id)->delete();
+        ProductionRequirement::where('location_id', $id)->delete();
+
+
+        Session::flash('flashSuccess', 'Location Deleted Successfully');
+        return redirect('admin/location');
+    }
 }
